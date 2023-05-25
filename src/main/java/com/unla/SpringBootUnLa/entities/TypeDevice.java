@@ -10,19 +10,22 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Prestamo {
+public class TypeDevice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
-	public int nroPrestamo;
-	public double monto;
+	private int id;
+	
+	private String nombre;
+	
+	private String descripcion;
 
-
-	public Prestamo(int nroPrestamo, int id) {
+	public TypeDevice(String nombre, String descripcion) {
 		super();
-		this.nroPrestamo = nroPrestamo;
-		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
 	}
+	
+	
 
 }
