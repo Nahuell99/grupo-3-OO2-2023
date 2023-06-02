@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +20,10 @@ public class SensorAlumbradoInteligente extends Device {
 	private boolean estado;
 	
 	@Column
-	private int umbralLuz;
+	private int umbralLuz; //Minimo de luz para uqe se active el sensor
 	
 	@Column
-	private int intensidadLuz;
+	private int intensidadLuz; //Ultima medidcion de luz registrada para este dispositivo
 	
 	@ManyToOne
     @JoinColumn(name = "device_id")
