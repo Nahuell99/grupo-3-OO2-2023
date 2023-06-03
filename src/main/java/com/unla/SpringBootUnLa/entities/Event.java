@@ -1,6 +1,7 @@
 package com.unla.SpringBootUnLa.entities;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -35,7 +36,7 @@ public class Event {
 
 	private String descripcion;
 
-	private boolean activo;
+	private boolean activo; //Si el evento se encuentra activo o no
 
 	public Event(Device device, String descripcion, boolean activo) {
 		super();
@@ -43,5 +44,28 @@ public class Event {
 		this.descripcion = descripcion;
 		this.activo = activo;
 	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", descripcion="
+				+ descripcion + ", activo=" + activo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Event other = (Event) obj;
+		return id == other.id;
+	}	
 
 }

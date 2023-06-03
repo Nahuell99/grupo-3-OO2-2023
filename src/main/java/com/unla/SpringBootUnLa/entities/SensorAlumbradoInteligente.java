@@ -1,10 +1,12 @@
 package com.unla.SpringBootUnLa.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,10 +16,13 @@ import lombok.Setter;
 public class SensorAlumbradoInteligente extends Device {
 
 	@Column
-	private String ubicacion;
+	private String establecimiento; //Por ejemplo, Cancha de Boca, Universidad de Lanus, Embajada de Bangladesh.
 	
 	@Column
-	private boolean estado;
+	private String ubicacionCordenada; //Dentro de un establecimineto en particular, las cordenadas de ubicacion
+	
+	@Column
+	private boolean estado; // Prendido o Apagado
 	
 	@Column
 	private int umbralLuz; //Minimo de luz para uqe se active el sensor
@@ -25,14 +30,14 @@ public class SensorAlumbradoInteligente extends Device {
 	@Column
 	private int intensidadLuz; //Ultima medidcion de luz registrada para este dispositivo
 	
-	@ManyToOne
-    @JoinColumn(name = "device_id")
-    private Device device;
+	@OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicionSensorAlumbrado> mediciones = new ArrayList<>();
 
-	public SensorAlumbradoInteligente(String nombre, String descripcion, boolean activo, String ubicacion,
+	public SensorAlumbradoInteligente(String nombre, String descripcion, boolean activo, String establecimiento, String ubicacionCordenada,
 			boolean estado, int umbralLuz, int intensidadLuz) {
 		super(nombre, descripcion, activo);
-		this.ubicacion = ubicacion;
+		this.establecimiento = establecimiento;
+		this.ubicacionCordenada = ubicacionCordenada;
 		this.estado = estado;
 		this.umbralLuz = umbralLuz;
 		this.intensidadLuz = intensidadLuz;
@@ -40,8 +45,8 @@ public class SensorAlumbradoInteligente extends Device {
 
 	@Override
 	public String toString() {
-		return super.toString() + "SensorAlumbradoInteligente{" + "ubicacion='" + ubicacion + '\'' + ", estado="
-				+ estado + ", umbralLuz=" + umbralLuz + ", intensidadLuz=" + intensidadLuz + '}';
+		return "SensorAlumbradoInteligente [establecimiento=" + establecimiento + ", ubicacionCordenada="
+				+ ubicacionCordenada + ", estado=" + estado + ", umbralLuz=" + umbralLuz + ", intensidadLuz="
+				+ intensidadLuz + "]";
 	}
-
 }

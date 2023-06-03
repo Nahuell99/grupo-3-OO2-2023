@@ -14,8 +14,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +34,7 @@ public abstract class Device {
 	private String descripcion;
 
 	@Column
-	private boolean activo;
+	private boolean activo; //Si el dispositivo se encuentra activo o no
 
 	@CreationTimestamp
 	private LocalDateTime createdAt;
@@ -47,6 +45,9 @@ public abstract class Device {
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Event> eventos = new ArrayList<>();
 
+	public Device() {
+	}
+	
 	public Device(String nombre, String descripcion, boolean activo) {
 		super();
 		this.nombre = nombre;
