@@ -46,13 +46,14 @@ public abstract class Device {
 	private List<Event> eventos = new ArrayList<>();
 
 	public Device() {
+		this.activo = true;
 	}
 	
-	public Device(String nombre, String descripcion, boolean activo) {
+	public Device(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.activo = activo;
+		this.activo = true;
 	}
 
 	@Override
@@ -77,5 +78,63 @@ public abstract class Device {
 		Device other = (Device) obj;
 		return id == other.id;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<Event> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Event> eventos) {
+		this.eventos = eventos;
+	}
+	
+	
 
 }

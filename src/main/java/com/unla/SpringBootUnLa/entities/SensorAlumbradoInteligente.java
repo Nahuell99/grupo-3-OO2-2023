@@ -33,20 +33,74 @@ public class SensorAlumbradoInteligente extends Device {
 	@OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicionSensorAlumbrado> mediciones = new ArrayList<>();
 
-	public SensorAlumbradoInteligente(String nombre, String descripcion, boolean activo, String establecimiento, String ubicacionCordenada,
-			boolean estado, int umbralLuz, int intensidadLuz) {
-		super(nombre, descripcion, activo);
+	public SensorAlumbradoInteligente(String nombre, String descripcion, String establecimiento, String ubicacionCordenada,
+			int umbralLuz) {
+		super(nombre, descripcion);
 		this.establecimiento = establecimiento;
 		this.ubicacionCordenada = ubicacionCordenada;
-		this.estado = estado;
+		this.estado = false; //Por defecto se crea apagado
 		this.umbralLuz = umbralLuz;
-		this.intensidadLuz = intensidadLuz;
+		this.intensidadLuz = 0; //Ultima medicion de luz registrada, se crea en CERO
+	}
+
+	public SensorAlumbradoInteligente() {
+		this.estado = false;
 	}
 
 	@Override
 	public String toString() {
-		return "SensorAlumbradoInteligente [establecimiento=" + establecimiento + ", ubicacionCordenada="
+		return 	super.toString() 
+				+ "SensorAlumbradoInteligente [establecimiento=" + establecimiento + ", ubicacionCordenada="
 				+ ubicacionCordenada + ", estado=" + estado + ", umbralLuz=" + umbralLuz + ", intensidadLuz="
 				+ intensidadLuz + "]";
 	}
+
+	public String getEstablecimiento() {
+		return establecimiento;
+	}
+
+	public void setEstablecimiento(String establecimiento) {
+		this.establecimiento = establecimiento;
+	}
+
+	public String getUbicacionCordenada() {
+		return ubicacionCordenada;
+	}
+
+	public void setUbicacionCordenada(String ubicacionCordenada) {
+		this.ubicacionCordenada = ubicacionCordenada;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+	public int getUmbralLuz() {
+		return umbralLuz;
+	}
+
+	public void setUmbralLuz(int umbralLuz) {
+		this.umbralLuz = umbralLuz;
+	}
+
+	public int getIntensidadLuz() {
+		return intensidadLuz;
+	}
+
+	public void setIntensidadLuz(int intensidadLuz) {
+		this.intensidadLuz = intensidadLuz;
+	}
+
+	public List<MedicionSensorAlumbrado> getMediciones() {
+		return mediciones;
+	}
+
+	public void setMediciones(List<MedicionSensorAlumbrado> mediciones) {
+		this.mediciones = mediciones;
+	}	
+	
 }

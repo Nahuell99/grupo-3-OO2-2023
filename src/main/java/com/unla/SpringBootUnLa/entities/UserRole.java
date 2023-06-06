@@ -42,6 +42,9 @@ public class UserRole {
 	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	public UserRole() {
+    }
 
 	public UserRole(int id, User user, String role) {
 		this.id = id;
