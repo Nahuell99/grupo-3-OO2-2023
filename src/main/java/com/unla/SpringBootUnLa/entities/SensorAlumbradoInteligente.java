@@ -3,6 +3,11 @@ package com.unla.SpringBootUnLa.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
+import org.springframework.validation.annotation.Validated;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +18,7 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 @NoArgsConstructor
+@Valid
 public class SensorAlumbradoInteligente extends Device {
 
 	@Column
@@ -24,7 +30,7 @@ public class SensorAlumbradoInteligente extends Device {
 	@Column
 	private boolean estado; // Prendido o Apagado
 	
-	@Column
+	@Column @Min(3)
 	private int umbralLuz; //Minimo de luz para uqe se active el sensor
 	
 	@Column
@@ -42,9 +48,8 @@ public class SensorAlumbradoInteligente extends Device {
 		this.umbralLuz = umbralLuz;
 		this.intensidadLuz = 0; //Ultima medicion de luz registrada, se crea en CERO
 	}
-
+	
 	public SensorAlumbradoInteligente() {
-		this.estado = false;
 	}
 
 	@Override

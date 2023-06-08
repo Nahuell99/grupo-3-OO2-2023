@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.validation.annotation.Validated;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,22 +16,27 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter
 @NoArgsConstructor
+@Valid
 public abstract class Device {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column
+	@NotBlank(message = "El campo 'nombre' es obligatorio")
 	private String nombre;
 
-	@Column
+	@Column @Size(min=3)
 	private String descripcion;
 
 	@Column
@@ -44,15 +50,15 @@ public abstract class Device {
 
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Event> eventos = new ArrayList<>();
-
-	public Device() {
-		this.activo = true;
-	}
 	
 	public Device(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.activo = true;
+	}
+	
+	public Device() {
 		this.activo = true;
 	}
 
@@ -134,7 +140,4 @@ public abstract class Device {
 	public void setEventos(List<Event> eventos) {
 		this.eventos = eventos;
 	}
-	
-	
-
 }

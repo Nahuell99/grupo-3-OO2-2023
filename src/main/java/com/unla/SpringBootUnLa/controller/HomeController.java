@@ -14,7 +14,7 @@ import com.unla.SpringBootUnLa.helpers.ViewRouteHelper;
 import com.unla.SpringBootUnLa.services.SensorAlumbradoInteligenteService;
 
 
-
+/*
 @Controller
 @RequestMapping("/")
 public class HomeController {
@@ -41,4 +41,4 @@ public class HomeController {
 		return mV;
 	}
 
-}
+}*/

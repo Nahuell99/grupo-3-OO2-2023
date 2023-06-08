@@ -28,8 +28,18 @@ public class SensorAlumbradoInteligenteService {
     public List<SensorAlumbradoInteligente> getAllSensors() {
         return sensorRepository.findAll();
     }
+    
+    public List<SensorAlumbradoInteligente> getAllActiveSensors() {
+        return sensorRepository.findByTipoAndActivoIsTrue();
+    }
 
     public void deleteSensor(long sensorId) {
-        sensorRepository.deleteById(sensorId);
+    	SensorAlumbradoInteligente sensor = this.getSensorById(sensorId);
+    	sensor.setActivo(false);
+    	this.saveSensor(sensor);
     }
+    
+    
+    
+    
 }
