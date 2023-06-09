@@ -1,1 +1,39 @@
-Listado entero de sensores especificos
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Dispositivos Activos</title>
+</head>
+<body>
+    <h1>Listado de Dispositivos Activos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Establecimiento</th>
+                <th>Ubicación</th>
+                <th>Estado</th>
+                <th>Umbral de Luz</th>
+                <th>Intensidad de Luz</th>
+                <!-- Agrega más columnas para mostrar los demás datos -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre los dispositivos y muestra cada uno en una fila -->
+            <tr th:each="device : ${devices}">
+                <td th:text="${device.id}"></td>
+                <td th:text="${device.nombre}"></td>
+                <td th:text="${device.descripcion}"></td>
+                <td th:text="${device.establecimiento}"></td>
+                <td th:text="${device.ubicacionCordenada}"></td>
+                <td th:text="${device.estado}"></td>
+                <td th:text="${device.umbralLuz}"></td>
+                <td th:text="${device.intensidadLuz}"></td>
+                <!-- Agrega más columnas para mostrar los demás datos -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Dispositivo</title>
+</head>
+<body>
+    <h1>Editar Dispositivo</h1>
+    <form action="#" th:action="@{/device/sensorAlumbradoInteligente/editar/guardar}" th:object="${sensorAlumbradoInteligente}" method="post">
+        <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+        <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en el nombre</p>
+        <p>Descripción: <input type="text" th:field="*{descripcion}" /></p>
+        <p th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error en la descripción</p>
+        <p>Establecimiento: <input type="text" th:field="*{establecimiento}" /></p>
+        <p>Ubicación: <input type="text" th:field="*{ubicacionCordenada}" /></p>
+        <p>Umbral de luz: <input type="number" th:field="*{umbralLuz}" /></p>
+        <p th:if="${#fields.hasErrors('umbralLuz')}" th:errors="*{umbralLuz}">Error en el umbral de luz</p>
+        <input type="submit" value="Guardar" />
+    </form>
+</body>
+</html>

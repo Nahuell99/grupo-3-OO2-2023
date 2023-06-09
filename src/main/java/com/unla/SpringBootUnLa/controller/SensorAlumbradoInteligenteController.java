@@ -50,7 +50,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// CREAR
-	@PostMapping("/newSensorAlumbradoInteligente")
+	@PostMapping("/sensorAlumbradoInteligente/newSensorAlumbradoInteligente")
 	public ModelAndView newSensorAlumbradoInteligente(
 			@Valid @ModelAttribute("sensorAlumbradoInteligente") SensorAlumbradoInteligente sensor,
 			BindingResult bindingResult) {
@@ -91,14 +91,30 @@ public class SensorAlumbradoInteligenteController {
 	// MODIFICAR
 	@GetMapping("/sensorAlumbradoInteligente/editar")
 	public String editarSensorAlumbradoInteligente(Model model) {
-		model.addAttribute("sensorAlumbradoInteligente", new SensorAlumbradoInteligente());
+		List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de dispositivos
+	    model.addAttribute("devices", devices); // Pasar la lista al modelo
 		return ViewRouteHelper.EDITAR_ALUMBRADO_INTELIGENTE;
 	}
 	
-	// MODIFICAR
+	// MODIFICAR Formulario
+	@GetMapping("/sensorAlumbradoInteligente/editar/{id}")
+	public String editarSensorAlumbrado(@PathVariable int id, Model model) {
+	    SensorAlumbradoInteligente device = sensorService.getSensorById(id); // Obtener el dispositivo por ID
+	    model.addAttribute("device", device); // Pasar el dispositivo al modelo
+	    return ViewRouteHelper.FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE; 
+	}
+	
+	//MODIFICAR GUARDADO
+	@GetMapping("/sensorAlumbradoInteligente/editar/guardar")
+	public ModelAndView editarSensorAlumbrado(@PathVariable int id) {
+	    return null;
+	}
+	
+	// Lista plana
 		@GetMapping("/sensorAlumbradoInteligente/lista")
 		public String listaSensorAlumbradoInteligente(Model model) {
-			model.addAttribute("sensorAlumbradoInteligente", new SensorAlumbradoInteligente());
+			List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de dispositivos activos
+			model.addAttribute("devices", devices); // Pasar la lista al modelo
 			return ViewRouteHelper.LISTA_ALUMBRADO_INTELIGENTE;
 		}
 
