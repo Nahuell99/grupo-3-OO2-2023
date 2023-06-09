@@ -18,6 +18,10 @@ public class MedicionSensorAlumbradoService {
     public MedicionSensorAlumbradoService(IMedicionSensorAlumbradoRepository medicionAlumbradoRepository) {
         this.medicionAlumbradoRepository = medicionAlumbradoRepository;
     }
+    
+    public MedicionSensorAlumbrado getSensorById(int sensorId) {
+        return medicionAlumbradoRepository.findById(sensorId).orElse(null);
+    }
 
     public MedicionSensorAlumbrado saveMedicion(MedicionSensorAlumbrado medicion) {
         return medicionAlumbradoRepository.save(medicion);

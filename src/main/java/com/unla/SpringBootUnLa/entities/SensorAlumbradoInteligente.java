@@ -18,7 +18,6 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 @NoArgsConstructor
-@Valid
 public class SensorAlumbradoInteligente extends Device {
 
 	@Column
@@ -30,7 +29,7 @@ public class SensorAlumbradoInteligente extends Device {
 	@Column
 	private boolean estado; // Prendido o Apagado
 	
-	@Column @Min(3)
+	@Column
 	private int umbralLuz; //Minimo de luz para uqe se active el sensor
 	
 	@Column
@@ -55,7 +54,7 @@ public class SensorAlumbradoInteligente extends Device {
 	@Override
 	public String toString() {
 		return 	super.toString() 
-				+ "SensorAlumbradoInteligente [establecimiento=" + establecimiento + ", ubicacionCordenada="
+				+ "\nSensorAlumbradoInteligente [establecimiento=" + establecimiento + ", ubicacionCordenada="
 				+ ubicacionCordenada + ", estado=" + estado + ", umbralLuz=" + umbralLuz + ", intensidadLuz="
 				+ intensidadLuz + "]";
 	}

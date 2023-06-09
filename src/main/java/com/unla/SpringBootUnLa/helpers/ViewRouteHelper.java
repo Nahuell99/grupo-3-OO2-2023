@@ -11,6 +11,8 @@ public class ViewRouteHelper {
 	public final static String FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/editarSensorFormulario";
 	public final static String LISTA_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/listaSensores";
 	
+	public final static String MEDICIONES_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/mediciones/mediciones";
+	
 	
 	
 	public final static String DEVICE_LIST = "device";

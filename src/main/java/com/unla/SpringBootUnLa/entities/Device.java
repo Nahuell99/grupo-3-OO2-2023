@@ -26,17 +26,16 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 @NoArgsConstructor
-@Valid
 public abstract class Device {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message = "El campo 'nombre' es obligatorio")
+	@Column
 	private String nombre;
 
-	@Column @Size(min=3)
+	@Column
 	private String descripcion;
 
 	@Column
@@ -64,7 +63,7 @@ public abstract class Device {
 
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo
+		return "\nDevice [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 

@@ -26,7 +26,6 @@ import com.unla.SpringBootUnLa.services.SensorAlumbradoInteligenteService;
 
 @Controller
 @RequestMapping("/device")
-@Valid
 public class SensorAlumbradoInteligenteController {
 
 	private final SensorAlumbradoInteligenteService sensorService;
@@ -72,7 +71,6 @@ public class SensorAlumbradoInteligenteController {
 	// ELIMINAR
 	@GetMapping("/sensorAlumbradoInteligente/eliminar")
 	public String eliminarSensorAlumbradoInteligente(Model model) {
-		System.out.println(sensorService.getAllActiveSensors());
 	    List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de dispositivos
 	    model.addAttribute("devices", devices); // Pasar la lista al modelo
 	    return ViewRouteHelper.ELIMINAR_ALUMBRADO_INTELIGENTE;
@@ -100,14 +98,22 @@ public class SensorAlumbradoInteligenteController {
 	@GetMapping("/sensorAlumbradoInteligente/editar/{id}")
 	public String editarSensorAlumbrado(@PathVariable int id, Model model) {
 	    SensorAlumbradoInteligente device = sensorService.getSensorById(id); // Obtener el dispositivo por ID
-	    model.addAttribute("device", device); // Pasar el dispositivo al modelo
+	    model.addAttribute("sensorAlumbradoInteligente", device); // Pasar el dispositivo al modelo
 	    return ViewRouteHelper.FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE; 
 	}
 	
 	//MODIFICAR GUARDADO
-	@GetMapping("/sensorAlumbradoInteligente/editar/guardar")
-	public ModelAndView editarSensorAlumbrado(@PathVariable int id) {
-	    return null;
+	@PostMapping("/sensorAlumbradoInteligente/editar/{id}/guardar")
+	public ModelAndView guardarSensorAlumbrado(@PathVariable int id,@ModelAttribute("device") SensorAlumbradoInteligente device) {
+	    // Guardar los cambios en el dispositivo en la base de datos
+		device.setId(id);
+		device.setCreatedAt(sensorService.getSensorById(id).getCreatedAt());
+	    sensorService.saveSensor(device);
+
+	    ModelAndView mV = new ModelAndView();
+	    mV.setViewName(ViewRouteHelper.NUEVO_ALUMBRADO_INTELIGENTE);
+	    mV.addObject("sensorAlumbradoInteligente", device);
+	    return mV;
 	}
 	
 	// Lista plana

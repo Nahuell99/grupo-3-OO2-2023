@@ -19,7 +19,7 @@ import com.unla.SpringBootUnLa.services.SensorAlumbradoInteligenteService;
 import com.unla.SpringBootUnLa.helpers.ViewRouteHelper;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/") 
 public class DeviceController {
 
     private final SensorAlumbradoInteligenteService sensorService;

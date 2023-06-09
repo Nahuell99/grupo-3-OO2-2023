@@ -10,7 +10,7 @@
         <!-- Itera sobre los dispositivos y muestra cada uno con su ID y Nombre -->
         <li th:each="device : ${devices}">
             <a th:href="@{/device/sensorAlumbradoInteligente/editar/{id}(id=${device.id})}">
-                <span th:text="${device.id}"></span>: <span th:text="${device.nombre}"></span>
+                ID <span th:text="${device.id}"></span>: <span th:text="${device.nombre}"></span>
             </a>
         </li>
     </ul>

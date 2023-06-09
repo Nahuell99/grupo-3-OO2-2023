@@ -31,17 +31,30 @@ public class MedicionSensorAlumbrado {
 
 	@Column
 	private int intensidadLuz;
+	
+	//indica si la medicion ya fue analizada por el dispositivo 
+	//y registrado los correspondientes eventos de ser necesarios
+	@Column
+	private boolean analizada; 
 
 	public MedicionSensorAlumbrado(SensorAlumbradoInteligente sensor, LocalDateTime fecha, int intensidadLuz) {
 		this.sensor = sensor;
 		this.fecha = fecha;
 		this.intensidadLuz = intensidadLuz;
+		this.analizada = false;
 	}
+	
+	public MedicionSensorAlumbrado() {
+    }
+	
+	
+
+	
 
 	@Override
 	public String toString() {
-		return "MedicionSensorAlumbrado [id=" + id + ", sensor=" + sensor + ", fecha=" + fecha + ", intensidadLuz="
-				+ intensidadLuz + "]";
+		return "\nMedicionSensorAlumbrado [id=" + id + ", sensor=" + sensor.getId() + ", fecha=" + fecha + ", intensidadLuz="
+				+ intensidadLuz + ", analizada=" + analizada + "]";
 	}
 
 	@Override

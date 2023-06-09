@@ -17,7 +17,7 @@
                 <th>Estado</th>
                 <th>Umbral de Luz</th>
                 <th>Intensidad de Luz</th>
-                <!-- Agrega más columnas para mostrar los demás datos -->
+                <th>Acciones</th> <!-- Columna para los botones -->
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,12 @@
                 <td th:text="${device.estado}"></td>
                 <td th:text="${device.umbralLuz}"></td>
                 <td th:text="${device.intensidadLuz}"></td>
-                <!-- Agrega más columnas para mostrar los demás datos -->
+                <td>
+                    <!-- Botones -->
+                    <a th:href="@{/device/sensorAlumbradoInteligente/lista/eventos/{id}(id=${device.id})}">Ver eventos</a>
+                    <a th:href="@{/device/sensorAlumbradoInteligente/lista/mediciones/{id}(id=${device.id})}">Ver mediciones</a>
+                    <a th:href="@{/device/sensorAlumbradoInteligente/lista/actualizar/{id}(id=${device.id})}">Actualizar</a>
+                </td>
             </tr>
         </tbody>
     </table>
