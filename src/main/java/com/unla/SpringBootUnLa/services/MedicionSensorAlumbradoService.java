@@ -31,8 +31,8 @@ public class MedicionSensorAlumbradoService {
         return medicionAlumbradoRepository.findBySensor(sensor);
     }
     
-    public List<MedicionSensorAlumbrado> getMedicionesBySensorAndAnalizadaFalse(SensorAlumbradoInteligente sensor) {
-        return medicionAlumbradoRepository.findBySensorAndAnalizadaFalse(sensor);
+    public List<MedicionSensorAlumbrado> getMedicionesBySensorAndAnalizadaFalseOrderByFechaAsc(SensorAlumbradoInteligente sensor) {
+        return medicionAlumbradoRepository.findBySensorAndAnalizadaFalseOrderByFechaAsc(sensor);
     }
 
     public List<MedicionSensorAlumbrado> getMedicionesBySensorAndFecha(SensorAlumbradoInteligente sensor, LocalDateTime fechaInicio, LocalDateTime fechaFin) {

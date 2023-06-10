@@ -38,11 +38,11 @@ public class Event {
 
 	private boolean activo; //Si el evento se encuentra activo o no
 
-	public Event(Device device, String descripcion, boolean activo) {
+	public Event(Device device, String descripcion) {
 		super();
 		this.device = device;
 		this.descripcion = descripcion;
-		this.activo = activo;
+		this.activo = true;
 	}
 	
 	public Event() {
