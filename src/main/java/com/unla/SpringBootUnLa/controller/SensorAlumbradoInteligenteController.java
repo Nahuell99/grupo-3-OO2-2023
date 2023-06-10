@@ -123,5 +123,7 @@ public class SensorAlumbradoInteligenteController {
 			model.addAttribute("devices", devices); // Pasar la lista al modelo
 			return ViewRouteHelper.LISTA_ALUMBRADO_INTELIGENTE;
 		}
+		
+	
 
 }

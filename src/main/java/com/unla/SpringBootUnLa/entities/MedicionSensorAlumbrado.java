@@ -46,10 +46,6 @@ public class MedicionSensorAlumbrado {
 	
 	public MedicionSensorAlumbrado() {
     }
-	
-	
-
-	
 
 	@Override
 	public String toString() {
@@ -72,5 +68,45 @@ public class MedicionSensorAlumbrado {
 			return false;
 		MedicionSensorAlumbrado other = (MedicionSensorAlumbrado) obj;
 		return Objects.equals(fecha, other.fecha);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public SensorAlumbradoInteligente getSensor() {
+		return sensor;
+	}
+
+	public void setSensor(SensorAlumbradoInteligente sensor) {
+		this.sensor = sensor;
+	}
+
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getIntensidadLuz() {
+		return intensidadLuz;
+	}
+
+	public void setIntensidadLuz(int intensidadLuz) {
+		this.intensidadLuz = intensidadLuz;
+	}
+
+	public boolean isAnalizada() {
+		return analizada;
+	}
+
+	public void setAnalizada(boolean analizada) {
+		this.analizada = analizada;
 	}
 }

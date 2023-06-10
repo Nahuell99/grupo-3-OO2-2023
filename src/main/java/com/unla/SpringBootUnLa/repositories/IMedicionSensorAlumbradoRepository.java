@@ -17,4 +17,7 @@ public interface IMedicionSensorAlumbradoRepository extends JpaRepository<Medici
 
 	List<MedicionSensorAlumbrado> findBySensor(SensorAlumbradoInteligente sensor);
 	
+	// Obtener todas las mediciones de un sensor de alumbrado inteligente no analizadas
+    List<MedicionSensorAlumbrado> findBySensorAndAnalizadaFalse(SensorAlumbradoInteligente sensor);
+	
 }

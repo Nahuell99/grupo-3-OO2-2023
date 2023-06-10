@@ -10,18 +10,16 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Fecha</th>
-                <th>Intensidad de Luz</th>
-                <th>Analizada</th>
+                <th>Creacion</th>
+                <th>Descripcion</th>
             </tr>
         </thead>
         <tbody>
             <!-- Itera sobre las mediciones y muestra cada una en una fila -->
-            <tr th:each="medicion : ${medicionSensorAlumbrado}">
-                <td th:text="${medicion.id}"></td>
-                <td th:text="${medicion.fecha}"></td>
-                <td th:text="${medicion.intensidadLuz}"></td>
-                <td th:text="${medicion.analizada}"></td>
+            <tr th:each="evento : ${eventos}">
+                <td th:text="${evento.id}"></td>
+                <td th:text="${evento.createdAt}"></td>
+                <td th:text="${evento.descripcion}"></td>
             </tr>
         </tbody>
     </table>
