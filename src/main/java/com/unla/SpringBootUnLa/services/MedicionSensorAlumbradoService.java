@@ -19,11 +19,33 @@ public class MedicionSensorAlumbradoService {
         this.medicionAlumbradoRepository = medicionAlumbradoRepository;
     }
     
-    public MedicionSensorAlumbrado getSensorById(int sensorId) {
+    public MedicionSensorAlumbrado getMedicionById(int sensorId) {
         return medicionAlumbradoRepository.findById(sensorId).orElse(null);
     }
 
     public MedicionSensorAlumbrado saveMedicion(MedicionSensorAlumbrado medicion) {
+        return medicionAlumbradoRepository.save(medicion);
+    }
+    
+ // Actualizar un registro existente
+    public MedicionSensorAlumbrado updateSensor(MedicionSensorAlumbrado medicion) {
+        if (medicion.getId() == 0) {
+            throw new IllegalArgumentException("La medicion debe tener un ID válido para ser actualizado");
+        }
+
+        // Verificar si la medicion existe en la base de datos
+        MedicionSensorAlumbrado existeMedicion = this.getMedicionById(medicion.getId());
+        if (existeMedicion == null) {
+            throw new IllegalArgumentException("No se encontró la medicion con ID: " + medicion.getId());
+        }
+
+        // Actualizar los campos del sensor existente con los nuevos valores
+        existeMedicion.setSensor(medicion.getSensor());
+        existeMedicion.setFecha(medicion.getFecha());
+        existeMedicion.setIntensidadLuz(medicion.getIntensidadLuz());
+        existeMedicion.setAnalizada(medicion.isAnalizada());
+
+        // Guardar el sensor actualizado en la base de datos
         return medicionAlumbradoRepository.save(medicion);
     }
     

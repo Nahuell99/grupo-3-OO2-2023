@@ -28,7 +28,6 @@ public class Event {
 	@JoinColumn(name = "device_id")
 	private Device device;
 
-	@CreationTimestamp
 	private LocalDateTime createdAt;
 
 	@UpdateTimestamp
@@ -38,7 +37,7 @@ public class Event {
 
 	private boolean activo; //Si el evento se encuentra activo o no
 
-	public Event(Device device, String descripcion) {
+	public Event(Device device, String descripcion, LocalDateTime createdAt) {
 		super();
 		this.device = device;
 		this.descripcion = descripcion;

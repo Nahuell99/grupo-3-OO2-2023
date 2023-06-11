@@ -60,32 +60,24 @@ public class MedicionSensorAlumbradoController {
 		// Actualizar el estado y generar eventos para cada medición no analizada
 		for (MedicionSensorAlumbrado medicion : medicionesNoAnalizadas) {
 			sensor.setIntensidadLuz(medicion.getIntensidadLuz()); // Le asigno la ulitma medicion de luz al sensor
-
+			
+			
 			if (!sensor.isEstado()) { // Si el estado actual del sensor es apagado
-				if (medicion.getIntensidadLuz() <= sensor.getUmbralLuz()) { // Si la luz de la medicion cae por debajo o
-																			// igual al umbral del sensor
+				if (medicion.getIntensidadLuz() <= sensor.getUmbralLuz()) { // Si la luz de la medicion cae por debajo o igual al umbral del sensor
 					sensor.setEstado(true); // Cambiar el estado del sensor a prendido
-					// Guardar el sensor actualizado en la base de datos
-					sensorService.saveSensor(sensor);
-					// Crear evento vinculado al sensor y con descripcion "Prender luz"
-					Event eventoPrenderLuz = new Event(sensor, "Prender luz");
-					// Guardar el evento creado en la base de datos
-					eventService.saveEvent(eventoPrenderLuz);
+					Event eventoPrenderLuz = new Event(sensor, "Prender luz", medicion.getFecha()); // Crear evento vinculado al sensor y con descripcion "Prender luz"
+					eventService.saveEvent(eventoPrenderLuz); // Guardar el evento creado en la base de datos
 				}
 			} else { // Si el estado actual del sensor es prendido
-				if (medicion.getIntensidadLuz() > sensor.getUmbralLuz()) {
+				if (medicion.getIntensidadLuz() > sensor.getUmbralLuz()) { //Si la luz de la medicion supera por encima al umbral del sensor
 					sensor.setEstado(false); // Cambiar el estado a apagado
-					// Guardar el sensor actualizado en la base de datos
-					sensorService.saveSensor(sensor);
-					// Crear evento "Apagar luz"
-					Event eventoApagarLuz = new Event(sensor, "Apagar luz");
-					// Guardar el evento en la base de datos
-					eventService.saveEvent(eventoApagarLuz);
+					Event eventoApagarLuz = new Event(sensor, "Apagar luz", medicion.getFecha()); // Crear evento vinculado al sensor y con descripcion "Apagar luz"
+					eventService.saveEvent(eventoApagarLuz); // Guardar el evento en la base de datos
 				}
 			}
-
+			sensorService.updateSensor(sensor); // Guardar el sensor actualizado en la base de datos
 			medicion.setAnalizada(true); // Marcar la medición como analizada
-			medicionService.saveMedicion(medicion); // Actualizar la medición en la base de datos
+			medicionService.updateSensor(medicion); // Actualizar la medición en la base de datos
 		}
 
 		model.addAttribute("sensorAlumbradoInteligente", sensor); // Pasarel sensor al modelo
