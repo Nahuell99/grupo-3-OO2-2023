@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Mediciones</title>
+</head>
+<body>
+    <h1>Listado de Mediciones</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Intensidad de Luz</th>
+                <th>Analizada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre las mediciones y muestra cada una en una fila -->
+            <tr th:each="medicion : ${medicionSensorAlumbrado}">
+                <td th:text="${medicion.id}"></td>
+                <td th:text="${medicion.fecha}"></td>
+                <td th:text="${medicion.intensidadLuz}"></td>
+                <td th:text="${medicion.analizada}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
