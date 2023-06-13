@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class Event {
 
 	@Id
@@ -42,11 +42,12 @@ public class Event {
 		this.device = device;
 		this.descripcion = descripcion;
 		this.activo = true;
+		this.createdAt = createdAt;
 	}
 	
 	public Event() {
-        // Constructor sin argumentos
-    }
+		this.activo = true;
+	}
 
 	@Override
 	public String toString() {

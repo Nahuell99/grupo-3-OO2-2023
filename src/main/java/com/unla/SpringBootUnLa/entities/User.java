@@ -2,6 +2,7 @@ package com.unla.SpringBootUnLa.entities;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class User {
 
 	@Id
@@ -51,6 +52,9 @@ public class User {
 		this.password = password;
 		this.enabled = enabled;
 		this.userRoles = userRoles;
+	}
+	
+	public User() {
 	}
 
 	public String getUsername() {
@@ -84,7 +88,28 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return id == other.id;
+	}
 	
 }

@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter
-@NoArgsConstructor
 public class MedicionSensorAlumbrado {
 
 	@Id
@@ -45,7 +44,8 @@ public class MedicionSensorAlumbrado {
 	}
 	
 	public MedicionSensorAlumbrado() {
-    }
+	}
+	
 
 	@Override
 	public String toString() {

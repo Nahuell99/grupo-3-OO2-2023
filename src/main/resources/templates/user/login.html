@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de Subtipos de Dispositivos</title>
+</head>
+<body>
+	<form th:action="@{/loginprocess}" method="post">
+		<input  type="text" name="username" id="username" placeholder="username"/>
+		<input  type="password" name="password" id="password" placeholder="password"/>
+		<input  type="submit"/>	 
+	</form>
+	<div th:if="${error != null}">
+		Datos incorrectos
+	</div>
+</body>
+</html>
+

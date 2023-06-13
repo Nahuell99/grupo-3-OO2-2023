@@ -13,12 +13,16 @@ public class ViewRouteHelper {
 	
 	public final static String MEDICIONES_ALUMBRADO_INTELIGENTE 		= "device/sensorAlumbradoInteligente/mediciones/mediciones";
 	public final static String EVENTO_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/mediciones/eventos";
+	public final static String SIN_MEDICIONES_NUEVAS 					= "device/sensorAlumbradoInteligente/mediciones/sinMedicionesNuevas";
 	
 	
 	
 	public final static String DEVICE_LIST = "device";
 	
-	//Redirects
-	public final static String ROUTE_INDEX = "home/hello";
+	//USER
+	public final static String USER_LOGIN = "user/login";
+	public final static String USER_LOGOUT = "user/logout";
+	
+
 
 }

@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +45,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// CREAR
+	//@PreAuthorize("hasRole('Administrador')")
 	@GetMapping("/sensorAlumbradoInteligente/crear")
 	public String crearSensorAlumbradoInteligente(Model model) {
 		model.addAttribute("sensorAlumbradoInteligente", new SensorAlumbradoInteligente());
@@ -49,6 +53,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// CREAR
+	//@PreAuthorize("hasRole('Administrador')")
 	@PostMapping("/sensorAlumbradoInteligente/newSensorAlumbradoInteligente")
 	public ModelAndView newSensorAlumbradoInteligente(
 			@Valid @ModelAttribute("sensorAlumbradoInteligente") SensorAlumbradoInteligente sensor,

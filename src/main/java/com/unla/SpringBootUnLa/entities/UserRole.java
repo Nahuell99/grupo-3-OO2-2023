@@ -1,6 +1,7 @@
 package com.unla.SpringBootUnLa.entities;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 @Table(name="user_role", uniqueConstraints=@UniqueConstraint(columnNames= {"role", "user_id"}))
 public class UserRole {
 
@@ -48,6 +49,25 @@ public class UserRole {
 		this.user = user;
 		this.role = role;
 	}
+	
+	public UserRole() {
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public String getRole() {
 		return role;
@@ -56,4 +76,43 @@ public class UserRole {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRole [id=" + id + ", role=" + role + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserRole other = (UserRole) obj;
+		return id == other.id;
+	}
+
 }

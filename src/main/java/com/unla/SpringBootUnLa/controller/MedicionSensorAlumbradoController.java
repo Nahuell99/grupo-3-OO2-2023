@@ -56,6 +56,12 @@ public class MedicionSensorAlumbradoController {
 		SensorAlumbradoInteligente sensor = sensorService.getSensorById(id); // Obtener el dispositivo por ID
 		List<MedicionSensorAlumbrado> medicionesNoAnalizadas = medicionService
 				.getMedicionesBySensorAndAnalizadaFalseOrderByFechaAsc(sensor);
+		System.out.println(medicionesNoAnalizadas);
+		if(medicionesNoAnalizadas.size() == 0){
+			System.out.println(medicionesNoAnalizadas);
+			return ViewRouteHelper.SIN_MEDICIONES_NUEVAS;
+		}
+		
 
 		// Actualizar el estado y generar eventos para cada medición no analizada
 		for (MedicionSensorAlumbrado medicion : medicionesNoAnalizadas) {
@@ -81,7 +87,8 @@ public class MedicionSensorAlumbradoController {
 		}
 
 		model.addAttribute("sensorAlumbradoInteligente", sensor); // Pasarel sensor al modelo
-		return ViewRouteHelper.LISTA_ALUMBRADO_INTELIGENTE;
+		model.addAttribute("eventos",eventService.getEventsByDevice(sensor));
+		return ViewRouteHelper.EVENTO_ALUMBRADO_INTELIGENTE;
 	}
 
 	@PostMapping

@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter
-@NoArgsConstructor
 public class SensorAlumbradoInteligente extends Device {
 
 	@Column
@@ -49,6 +48,9 @@ public class SensorAlumbradoInteligente extends Device {
 	}
 	
 	public SensorAlumbradoInteligente() {
+		super();
+		this.estado = false; //Por defecto se crea apagado
+		this.intensidadLuz = 0; //Ultima medicion de luz registrada, se crea en CERO
 	}
 
 	@Override
