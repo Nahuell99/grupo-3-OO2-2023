@@ -107,6 +107,5 @@ public class SensorAlumbradoInteligente extends Device {
 
 	public void setMediciones(List<MedicionSensorAlumbrado> mediciones) {
 		this.mediciones = mediciones;
-	}	
-	
+	}
 }

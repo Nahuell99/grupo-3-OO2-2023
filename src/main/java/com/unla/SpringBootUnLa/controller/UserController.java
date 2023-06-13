@@ -33,5 +33,4 @@ public class UserController {
 		System.out.println("Paso por /loginCheck");
 		return "redirect:/device";		
 	}
-	
 }

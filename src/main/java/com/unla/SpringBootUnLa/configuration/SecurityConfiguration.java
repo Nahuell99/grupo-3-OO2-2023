@@ -38,20 +38,4 @@ public class SecurityConfiguration  {
 			.and()
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
 	}
-	
-	/*
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.securityMatcher("/device/sensorAlumbradoInteligente/**")                            
-			.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers("/crear/**").hasRole("ADMIN")       
-				.requestMatchers("/lista/**").hasRole("Auditor")     
-				.anyRequest().authenticated()                      
-			)
-			.formLogin(withDefaults());
-		return http.build();
-	}
-	*/
-	
 }

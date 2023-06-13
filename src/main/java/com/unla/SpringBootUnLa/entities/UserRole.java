@@ -114,5 +114,4 @@ public class UserRole {
 		UserRole other = (UserRole) obj;
 		return id == other.id;
 	}
-
 }

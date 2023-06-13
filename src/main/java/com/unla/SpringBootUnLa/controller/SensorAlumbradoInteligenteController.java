@@ -45,7 +45,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// CREAR
-	//@PreAuthorize("hasRole('Administrador')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/sensorAlumbradoInteligente/crear")
 	public String crearSensorAlumbradoInteligente(Model model) {
 		model.addAttribute("sensorAlumbradoInteligente", new SensorAlumbradoInteligente());
@@ -53,7 +53,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// CREAR
-	//@PreAuthorize("hasRole('Administrador')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/sensorAlumbradoInteligente/newSensorAlumbradoInteligente")
 	public ModelAndView newSensorAlumbradoInteligente(
 			@Valid @ModelAttribute("sensorAlumbradoInteligente") SensorAlumbradoInteligente sensor,

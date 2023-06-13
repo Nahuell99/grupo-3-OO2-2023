@@ -110,6 +110,5 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return id == other.id;
-	}
-	
+	}	
 }
