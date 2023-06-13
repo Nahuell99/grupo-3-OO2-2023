@@ -13,6 +13,6 @@ import com.unla.SpringBootUnLa.entities.RecolectorInteligente;
 public interface IRecolectorInteligenteRepository extends JpaRepository<RecolectorInteligente, Long> {
 
 	@Query("SELECT r FROM RecolectorInteligente r WHERE TYPE(r) = RecolectorInteligente AND r.activo = true")
-    List<SensorAlumbradoInteligente> findByTipoAndActivoIsTrue();
+    List<RecolectorInteligente> findByTipoAndActivoIsTrue();
 	 
 }

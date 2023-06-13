@@ -17,21 +17,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.unla.SpringBootUnLa.entities.RecolectorInteligente;
 import com.unla.SpringBootUnLa.helpers.ViewRouteHelper;
 import com.unla.SpringBootUnLa.services.RecolectorInteligenteService;
+
 @Controller
 @RequestMapping("/device")
 public class RecolectorInteligenteController {
 
-    private final IRecolectorInteligenteRepository recolectorRepository;
+    private final RecolectorInteligenteService recolectorService;
 
-    public RecolectorInteligenteController(IRecolectorInteligenteRepository recolectorRepository) {
-        this.recolectorRepository = recolectorRepository;
+    public RecolectorInteligenteController(RecolectorInteligenteService recolectorService) {
+        this.recolectorService = recolectorService;
     }
 
     // URL BASE
     @GetMapping("/recolectorInteligente")
     public String recolectorInteligente(Model model) {
         model.addAttribute("recolectorInteligente", new RecolectorInteligente());
-        return "menu_opciones";
+        return ViewRouteHelper.MENU_OPCIONES;
     }
 
     // CREAR
@@ -39,7 +40,7 @@ public class RecolectorInteligenteController {
     @GetMapping("/recolectorInteligente/crear")
     public String crearRecolectorInteligente(Model model) {
         model.addAttribute("recolectorInteligente", new RecolectorInteligente());
-        return "crear_recolector_inteligente";
+        return ViewRouteHelper.CREAR_RECOLECTOR_INTELIGENTE;
     }
 
     // CREAR
@@ -51,10 +52,10 @@ public class RecolectorInteligenteController {
 
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("crear_recolector_inteligente");
+            modelAndView.setViewName(ViewRouteHelper.CREAR_RECOLECTOR_INTELIGENTE);
         } else {
-            recolectorRepository.save(recolector);
-            modelAndView.setViewName("nuevo_recolector_inteligente");
+            recolectorService.saveRecolector(recolector);
+            modelAndView.setViewName(ViewRouteHelper.NUEVO_RECOLECTOR_INTELIGENTE);
             modelAndView.addObject("recolectorInteligente", recolector);
         }
         return modelAndView;
@@ -63,19 +64,18 @@ public class RecolectorInteligenteController {
     // ELIMINAR
     @GetMapping("/recolectorInteligente/eliminar")
     public String eliminarRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorRepository.findByActivoIsTrue();
+        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
         model.addAttribute("recolectores", recolectores);
-        return "eliminar_recolector_inteligente";
+        return ViewRouteHelper.ELIMINAR_RECOLECTOR_INTELIGENTE;
     }
-	
+
     @GetMapping("/recolectorInteligente/eliminar/{id}")
     public ModelAndView eliminarRecolectorInteligente(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        RecolectorInteligente recolector = recolectorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de RecolectorInteligente inválido: " + id));
+        RecolectorInteligente recolector = recolectorService.getRecolectorById(id);
         recolector.setActivo(false);
-        recolectorRepository.save(recolector);
-        modelAndView.setViewName("menu_opciones");
+        recolectorService.deleteRecolector(id);
+        modelAndView.setViewName(ViewRouteHelper.MENU_OPCIONES);
         modelAndView.addObject("recolectorInteligente", recolector);
         return modelAndView;
     }
@@ -83,39 +83,37 @@ public class RecolectorInteligenteController {
     // MODIFICAR
     @GetMapping("/recolectorInteligente/editar")
     public String editarRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorRepository.findByActivoIsTrue();
+        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
         model.addAttribute("recolectores", recolectores);
-        return "editar_recolector_inteligente";
+        return ViewRouteHelper.EDITAR_RECOLECTOR_INTELIGENTE;
     }
-	
+
     // MODIFICAR Formulario
     @GetMapping("/recolectorInteligente/editar/{id}")
     public String editarRecolectorInteligente(@PathVariable Long id, Model model) {
-        RecolectorInteligente recolector = recolectorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de RecolectorInteligente inválido: " + id));
+        RecolectorInteligente recolector = recolectorService.getRecolectorById(id);
         model.addAttribute("recolectorInteligente", recolector);
-        return "formulario_editar_recolector_inteligente";
+        return ViewRouteHelper.FORMULARIO_EDITAR_RECOLECTOR_INTELIGENTE;
     }
-	
+
     // MODIFICAR GUARDADO
     @PostMapping("/recolectorInteligente/editar/{id}/guardar")
-    public ModelAndView guardarRecolectorInteligente(@PathVariable Long id,
-            @ModelAttribute("recolectorInteligente") RecolectorInteligente recolector) {
+    public ModelAndView guardarRecolectorInteligente(@PathVariable int id, @ModelAttribute("recolectorInteligente") RecolectorInteligente recolector) {
         recolector.setId(id);
-        recolector.setCreatedAt(recolectorRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de RecolectorInteligente inválido: " + id)).getCreatedAt());
-        recolectorRepository.save(recolector);
+        recolector.setCreatedAt(recolectorService.getRecolectorById(id).getCreatedAt());
+        recolectorService.saveRecolector(recolector);
+        
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("nuevo_recolector_inteligente");
+        modelAndView.setViewName(ViewRouteHelper.NUEVO_RECOLECTOR_INTELIGENTE);
         modelAndView.addObject("recolectorInteligente", recolector);
         return modelAndView;
     }
-	
+
     // Lista plana
     @GetMapping("/recolectorInteligente/lista")
     public String listaRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorRepository.findByActivoIsTrue();
+        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
         model.addAttribute("recolectores", recolectores);
-        return "lista_recolector_inteligente";
+        return ViewRouteHelper.LISTA_RECOLECTOR_INTELIGENTE;
     }
 }
