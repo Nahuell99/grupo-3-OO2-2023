@@ -24,7 +24,7 @@ public class SensorAlumbradoInteligenteService {
     
  // Actualizar un registro existente
     public SensorAlumbradoInteligente updateSensor(SensorAlumbradoInteligente sensor) {
-        if (sensor.getId() == 0) {
+        if (sensor.getId() <= 0) {
             throw new IllegalArgumentException("El sensor debe tener un ID válido para ser actualizado");
         }
 
