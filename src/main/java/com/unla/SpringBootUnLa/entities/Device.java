@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.validation.annotation.Validated;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,15 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Entity @Getter @Setter
+import lombok.Data;
+@Entity @Data
 public abstract class Device {
 
 	@Id
@@ -49,93 +41,15 @@ public abstract class Device {
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Event> eventos = new ArrayList<>();
 	
-	public Device(String nombre, String descripcion) {
+	protected Device(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.activo = true;
 	}
 	
-	public Device() {
+	protected Device() {
 		this.activo = true;
 	}
 
-	@Override
-	public String toString() {
-		return "\nDevice [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Device other = (Device) obj;
-		return id == other.id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public List<Event> getEventos() {
-		return eventos;
-	}
-
-	public void setEventos(List<Event> eventos) {
-		this.eventos = eventos;
-	}
 }

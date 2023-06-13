@@ -21,9 +21,9 @@ public class RecolectorInteligente extends Device {
     @Column
     private boolean usoIndebido;
 
-    public RecolectorInteligente(String nombre, String descripcion, boolean activo, boolean contenedorLleno,
+    public RecolectorInteligente(String nombre, String descripcion, boolean contenedorLleno,
             boolean limpiadorAutomaticoActivo, boolean usoIndebido) {
-        super(nombre, descripcion, activo);
+        super(nombre, descripcion);
         this.contenedorLleno = contenedorLleno;
         this.limpiadorAutomaticoActivo = limpiadorAutomaticoActivo;
         this.usoIndebido = usoIndebido;

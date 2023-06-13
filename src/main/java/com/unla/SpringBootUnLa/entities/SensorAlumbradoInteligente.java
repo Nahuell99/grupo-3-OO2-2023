@@ -3,17 +3,11 @@ package com.unla.SpringBootUnLa.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-
-import org.springframework.validation.annotation.Validated;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter
@@ -61,52 +55,6 @@ public class SensorAlumbradoInteligente extends Device {
 				+ intensidadLuz + "]";
 	}
 
-	public String getEstablecimiento() {
-		return establecimiento;
-	}
-
-	public void setEstablecimiento(String establecimiento) {
-		this.establecimiento = establecimiento;
-	}
-
-	public String getUbicacionCordenada() {
-		return ubicacionCordenada;
-	}
-
-	public void setUbicacionCordenada(String ubicacionCordenada) {
-		this.ubicacionCordenada = ubicacionCordenada;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-
-	public int getUmbralLuz() {
-		return umbralLuz;
-	}
-
-	public void setUmbralLuz(int umbralLuz) {
-		this.umbralLuz = umbralLuz;
-	}
-
-	public int getIntensidadLuz() {
-		return intensidadLuz;
-	}
-
-	public void setIntensidadLuz(int intensidadLuz) {
-		this.intensidadLuz = intensidadLuz;
-	}
-
-	public List<MedicionSensorAlumbrado> getMediciones() {
-		return mediciones;
-	}
-
-	public void setMediciones(List<MedicionSensorAlumbrado> mediciones) {
-		this.mediciones = mediciones;
-	}	
+		
 	
 }
