@@ -29,9 +29,9 @@ public class SensorAlumbradoInteligente extends Device {
     @JoinColumn(name = "device_id")
     private Device device;
 
-	public SensorAlumbradoInteligente(String nombre, String descripcion, boolean activo, String ubicacion,
+	public SensorAlumbradoInteligente(String nombre, String descripcion, String ubicacion,
 			boolean estado, int umbralLuz, int intensidadLuz) {
-		super(nombre, descripcion, activo);
+		super(nombre, descripcion);
 		this.ubicacion = ubicacion;
 		this.estado = estado;
 		this.umbralLuz = umbralLuz;

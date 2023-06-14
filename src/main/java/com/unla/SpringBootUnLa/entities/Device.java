@@ -22,7 +22,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter
-@NoArgsConstructor
+@NoArgsConstructor 
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Device {
 
 	@Id
@@ -47,11 +48,11 @@ public abstract class Device {
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Event> eventos = new ArrayList<>();
 
-	public Device(String nombre, String descripcion, boolean activo) {
+	public Device(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.activo = activo;
+		this.activo = true;
 	}
 
 	@Override

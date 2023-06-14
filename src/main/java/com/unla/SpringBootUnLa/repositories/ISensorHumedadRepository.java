@@ -1,4 +1,4 @@
-package repositories;
+package com.unla.SpringBootUnLa.repositories;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.unla.SpringBootUnLa.entities.SensorHumedad;
 
-@Repository("SensorHumedadRepository")
-public interface ISensorHumedadRepositorio extends JpaRepository<SensorHumedad,Serializable> {
-	public abstract SensorHumedad findByName(String name);
-	public abstract SensorHumedad findByInstitutionAndYear(String institution, int year);
+@Repository("sensorHumedadRepository")
+public interface ISensorHumedadRepository extends JpaRepository<SensorHumedad,Serializable> {
+	//public abstract SensorHumedad findByName(String nombre);
+	/*public abstract SensorHumedad findByInstitutionAndYear(String institution, int year);
 	public abstract List<SensorHumedad> findByInstitutionAndYearOrderByYearDesc(String institution, int year);
-	
+	*/
 }

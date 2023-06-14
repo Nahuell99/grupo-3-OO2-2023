@@ -16,12 +16,17 @@ import lombok.Setter;
 public class SensorHumedad extends Device{
 	
 	
-	
 	private int valorMinHumedad;
 	
 	
 	private int	valorMaxHumedad;
 	
-		
+	
+		public SensorHumedad(String nombre, String descripcion, int valorMinHumedad, int valorMaxHumedad) {
+		super(nombre, descripcion);
+		this.valorMinHumedad = valorMinHumedad;
+		this.valorMaxHumedad = valorMaxHumedad;
+	}
+
 	
 }

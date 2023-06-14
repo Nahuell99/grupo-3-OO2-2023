@@ -8,15 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.unla.SpringBootUnLa.entities.SensorHumedad;
 import com.unla.SpringBootUnLa.models.SensorHumedadModel;
+import com.unla.SpringBootUnLa.repositories.ISensorHumedadRepository;
 import com.unla.SpringBootUnLa.services.ISensorHumedadService;
+
+
+
 import org.modelmapper.ModelMapper;
-import repositories.ISensorHumedadRepositorio;
+
 
 @Service("sensorHumedadService")
 public class SensorHumedadService implements ISensorHumedadService {
+	
 	@Autowired
 	@Qualifier("sensorHumedadRepository")
-	private ISensorHumedadRepositorio sensorHumedadRepository;
+	private ISensorHumedadRepository sensorHumedadRepository;
 	
 	private ModelMapper modelMapper=new ModelMapper();
 			
@@ -27,10 +32,10 @@ public class SensorHumedadService implements ISensorHumedadService {
 	}
 
 	@Override
-	public SensorHumedadModel insertOrUpdate(SensorHumedadModel sensorModelo) {
-		SensorHumedad sensor=sensorHumedadRepository.save(modelMapper.map(sensorModelo, SensorHumedad.class));
+	public SensorHumedadModel insertOrUpdate(SensorHumedad sensor) {
+		SensorHumedad sensorNew=sensorHumedadRepository.save(sensor);
 		
-		return modelMapper.map(sensor, SensorHumedadModel.class);
+		return modelMapper.map(sensorNew, SensorHumedadModel.class);
 	}
 
 	@Override

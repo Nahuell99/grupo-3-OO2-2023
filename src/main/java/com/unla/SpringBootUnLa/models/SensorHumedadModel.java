@@ -8,14 +8,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class SensorHumedadModel {
-	
-	
+	private String nombre;
+	private String descripcion;
 	private int valorMinHumedad;
 	
 	private int valorMaxHumedad;
 
-	public SensorHumedadModel(int valorMinHumedad, int valorMaxHumedad) {
+	public SensorHumedadModel(String nombre,String descripcion,int valorMinHumedad, int valorMaxHumedad) {
 		super();
+		this.nombre=nombre;
+		this.descripcion=descripcion;
 		this.valorMinHumedad = valorMinHumedad;
 		this.valorMaxHumedad = valorMaxHumedad;
 	}

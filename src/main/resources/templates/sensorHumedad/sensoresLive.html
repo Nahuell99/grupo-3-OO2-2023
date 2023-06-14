@@ -1,0 +1,13 @@
+<h1>Lista de sensores en tiempo real</h1>
+
+<table>
+	<tr>
+		<th>Nombre:</th>
+		<th>Descripcion:</th>
+	</tr>
+	<tr th:each="s : ${listaSensores}" >
+		<td th:text="${s.nombre}"></td>
+		<td th:text="${s.descripcion}"></td>
+	</tr>
+	
+</table>

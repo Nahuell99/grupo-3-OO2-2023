@@ -1,0 +1,23 @@
+<h1>Sensor creado</h1>
+
+<p> Nombre: <span th:text="${sensor.nombre}"></span> </p>
+<p> Descripcion: <span th:text="${sensor.descripcion}"></span> </p>
+<p> Valor min de humedad <span th:text="${sensor.valorMinHumedad}"></span> </p>
+<p> valor maximo de humedad <span th:text="${sensor.valorMaxHumedad}"></span></p>
+
+<h1>Lista de sensores en tiempo real</h1>
+
+<table>
+	<tr>
+		<th>Nombre:</th>
+		<th>Descripcion:</th>
+		<th>valor Minimo</th>
+		<th>Valor maximo</th>
+	</tr>
+	<tr th:each="s : ${listaSensores}" >
+		<td th: text="${s.nombre}"></td>
+		<td th: text="${s.descripcion}"></td>
+		<td th: text></td>
+	</tr>
+	
+</table>

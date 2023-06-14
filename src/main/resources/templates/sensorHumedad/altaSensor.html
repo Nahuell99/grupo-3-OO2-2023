@@ -1,0 +1,12 @@
+
+<h2>Alta sensor de muedad</h2>
+<form action="#" th:action="@{nuevoSensor}" th:object="${sensor}" method="post">
+	<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+	<p>Descripcion: <input type="text" th:field="*{descripcion}" /></p>
+	<p>valor min de humedad de humedad: <input type="text" th:field="*{valorMinHumedad}"/>  </p>
+	<p>Valor maximo de humedad: <input type="text" th:field="*{valorMaxHumedad}"/> </p>
+	<input type="submit"/>
+	
+	
+	
+</form>

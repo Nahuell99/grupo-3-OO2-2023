@@ -1,4 +1,4 @@
-package repositories;
+package com.unla.SpringBootUnLa.repositories;
 
 import java.util.List;
 
