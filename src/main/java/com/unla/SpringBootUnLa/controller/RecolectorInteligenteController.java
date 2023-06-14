@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class RecolectorInteligenteController {
     @GetMapping("/recolectorInteligente")
     public String recolectorInteligente(Model model) {
         model.addAttribute("recolectorInteligente", new RecolectorInteligente());
-        return ViewRouteHelper.MENU_OPCIONES;
+        return ViewRouteHelper.MENU_OPCIONES_RECOLECTOR;
     }
 
     // CREAR
@@ -69,13 +70,13 @@ public class RecolectorInteligenteController {
         return ViewRouteHelper.ELIMINAR_RECOLECTOR_INTELIGENTE;
     }
 
-    @GetMapping("/recolectorInteligente/eliminar/{id}")
+    @DeleteMapping("/recolectorInteligente/eliminar/{id}")
     public ModelAndView eliminarRecolectorInteligente(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
         RecolectorInteligente recolector = recolectorService.getRecolectorById(id);
         recolector.setActivo(false);
         recolectorService.deleteRecolector(id);
-        modelAndView.setViewName(ViewRouteHelper.MENU_OPCIONES);
+        modelAndView.setViewName(ViewRouteHelper.MENU_OPCIONES_RECOLECTOR);
         modelAndView.addObject("recolectorInteligente", recolector);
         return modelAndView;
     }

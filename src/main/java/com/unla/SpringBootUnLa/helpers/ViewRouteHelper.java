@@ -2,35 +2,33 @@ package com.unla.SpringBootUnLa.helpers;
 
 public class ViewRouteHelper {
 
-	// Vistas Alumbrado inteligente
-	public final static String MENU_OPCIONES 							= "device/sensorAlumbradoInteligente";
-	public final static String CREAR_ALUMBRADO_INTELIGENTE 				= "device/sensorAlumbradoInteligente/crearSensor";
-	public final static String NUEVO_ALUMBRADO_INTELIGENTE 				= "device/sensorAlumbradoInteligente/nuevoSensor";
-	public final static String ELIMINAR_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/eliminarSensor";
-	public final static String EDITAR_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/editarSensor";
-	public final static String FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE 	= "device/sensorAlumbradoInteligente/editarSensorFormulario";
-	public final static String LISTA_ALUMBRADO_INTELIGENTE 				= "device/sensorAlumbradoInteligente/listaSensores";
-	
-	public final static String MEDICIONES_ALUMBRADO_INTELIGENTE 		= "device/sensorAlumbradoInteligente/mediciones/mediciones";
-	public final static String EVENTO_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/mediciones/eventos";
-	public final static String SIN_MEDICIONES_NUEVAS 					= "device/sensorAlumbradoInteligente/mediciones/sinMedicionesNuevas";
+	private ViewRouteHelper(){}
 
-	// Vistas Recolector inteligente
- 	public final static String CREAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/crearRecolector";
-    public final static String NUEVO_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/nuevoRecolector";
-    public final static String ELIMINAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/eliminarRecolector";
-    public final static String EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolector";
-    public final static String FORMULARIO_EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolectorFormulario";
-    public final static String LISTA_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/listaRecolectores";
-	
-	
-	
-	public final static String DEVICE_LIST = "device";
-	
-	//USER
-	public final static String USER_LOGIN = "user/login";
-	public final static String USER_LOGOUT = "user/logout";
-	
+    // Vistas Alumbrado inteligente
+    public static final String MENU_OPCIONES = "device/sensorAlumbradoInteligente";
+    public static final String CREAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/crearSensor";
+    public static final String NUEVO_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/nuevoSensor";
+    public static final String ELIMINAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/eliminarSensor";
+    public static final String EDITAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/editarSensor";
+    public static final String FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/editarSensorFormulario";
+    public static final String LISTA_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/listaSensores";
 
+    public static final String MEDICIONES_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/mediciones/mediciones";
+    public static final String EVENTO_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/mediciones/eventos";
+    public static final String SIN_MEDICIONES_NUEVAS = "device/sensorAlumbradoInteligente/mediciones/sinMedicionesNuevas";
 
+    // Vistas Recolector inteligente
+    public static final String MENU_OPCIONES_RECOLECTOR = "device/recolectorInteligente";
+    public static final String CREAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/crearRecolector";
+    public static final String NUEVO_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/nuevoRecolector";
+    public static final String ELIMINAR_RECOLECTOR_INTELIGENTE = "de vice/recolectorInteligente/eliminarRecolector";
+    public static final String EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolector";
+    public static final String FORMULARIO_EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolectorFormulario";
+    public static final String LISTA_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/listaRecolectores";
+
+    public static final String DEVICE_LIST = "device";
+
+    // USER
+    public static final String USER_LOGIN = "user/login";
+    public static final String USER_LOGOUT = "user/logout";
 }

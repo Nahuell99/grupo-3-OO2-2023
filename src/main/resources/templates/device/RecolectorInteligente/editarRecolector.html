@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Dispositivos para Editar</title>
+</head>
+<body>
+    <h1>Listado de Dispositivos para Editar</h1>
+    <ul>
+        <!-- Itera sobre los dispositivos y muestra cada uno con su ID y Nombre -->
+        <li th:each="device : ${devices}">
+            <a th:href="@{/device/recolectorInteligente/editar/{id}(id=${device.id})}">
+                ID <span th:text="${device.id}"></span>: <span th:text="${device.nombre}"></span>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

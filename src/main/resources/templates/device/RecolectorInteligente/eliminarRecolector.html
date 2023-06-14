@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xml:lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Listado de Dispositivos</title>
@@ -8,10 +8,10 @@
 	<script th:inline="javascript">
 	    function confirmarEliminacion(deviceId) {
 	        if (confirm('¿Estás seguro de que deseas eliminar este dispositivo?')) {
-	            fetch('/device/sensorAlumbradoInteligente/eliminar/' + deviceId, { method: 'DELETE' })
+	            fetch('/device/recolectorInteligente/eliminar/' + deviceId, { method: 'GET' })
 	                .then(function(response) {
 	                    // Manejar la respuesta si es necesario
-	                    window.location.href = '/device/sensorAlumbradoInteligente'; // Redirigir a la página de listado después de la eliminación
+	                    window.location.href = '/device/recolectorInteligente'; // Redirigir a la página de listado después de la eliminación
 	                })
 	                .catch(function(error) {
 	                    // Manejar el error si es necesario
@@ -29,9 +29,3 @@
 	</ul>
 </body>
 </html>
-
-
-
-
-
-

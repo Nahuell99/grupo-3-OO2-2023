@@ -1,0 +1,9 @@
+<form action="#" th:action="@{/device/recolectorInteligente/editar/{id}/guardar(id=*{id})}" th:object="${recolectorInteligente}" method="post">
+    <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+    <p>Descripcion: <input type="text" th:field="*{descripcion}" /></p>
+    <p>Contenedor Lleno: <input type="checkbox" th:field="*{contenedorLleno}" /></p>
+    <p>Limpiador Automático Activo: <input type="checkbox" th:field="*{limpiadorAutomaticoActivo}" /></p>
+    <p>Uso Indebido: <input type="checkbox" th:field="*{usoIndebido}" /></p>
+    
+    <input type="submit" value="Guardar"/>
+</form>
