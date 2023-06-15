@@ -4,23 +4,15 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unla.SpringBootUnLa.entities.SensorAlumbradoInteligente;
@@ -56,21 +48,12 @@ public class SensorAlumbradoInteligenteController {
 	// CREAR
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/sensorAlumbradoInteligente/newSensorAlumbradoInteligente")
-	public ModelAndView newSensorAlumbradoInteligente(
-			@Valid @ModelAttribute("sensorAlumbradoInteligente") SensorAlumbradoInteligente sensor,
-			BindingResult bindingResult) {
+	public ModelAndView newSensorAlumbradoInteligente(@Valid @ModelAttribute("sensorAlumbradoInteligente") SensorAlumbradoInteligente sensor) {
 
 		ModelAndView mV = new ModelAndView();
-		System.out.println(bindingResult);
-		if (bindingResult.hasErrors()) {
-			// Si hay errores de validación, vuelve a cargar el formulario con los errores
-			mV.setViewName(ViewRouteHelper.CREAR_ALUMBRADO_INTELIGENTE);
-		} else {
-			// Si no hay errores de validación, guarda el sensor en la base de datos
-			sensorService.saveSensor(sensor);
-			mV.setViewName(ViewRouteHelper.NUEVO_ALUMBRADO_INTELIGENTE);
-			mV.addObject("sensorAlumbradoInteligente", sensor);
-		}
+		sensorService.saveSensor(sensor);
+		mV.setViewName(ViewRouteHelper.NUEVO_ALUMBRADO_INTELIGENTE);
+		mV.addObject("sensorAlumbradoInteligente", sensor);
 		return mV;
 	}
 
