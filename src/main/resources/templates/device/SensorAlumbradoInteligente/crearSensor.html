@@ -79,21 +79,21 @@ html, body {
 					<form action="#" th:action="@{newSensorAlumbradoInteligente}"
 						th:object="${sensorAlumbradoInteligente}" method="post">
 						<p>
-							Nombre: <input type="text" th:field="*{nombre}" />
+							Nombre: <input type="text" id="nombre" th:field="*{nombre}" />
 						</p>
 						<p>
-							Descripcion: <input type="text" th:field="*{descripcion}" />
+							Descripcion: <input type="text" id="descripcion" th:field="*{descripcion}" />
 						</p>
 						<p>
-							Establecimiento: <input type="text" th:field="*{establecimiento}" />
+							Establecimiento: <input type="text" id="establecimiento" th:field="*{establecimiento}" />
 						</p>
 						<p>
-							Ubicacion: <input type="text" th:field="*{ubicacionCordenada}" />
+							Ubicacion: <input type="text" id="ubicacion" th:field="*{ubicacionCordenada}" />
 						</p>
 						<p>
-							Umbral de luz: <input type="number" th:field="*{umbralLuz}" />
+							Umbral de luz: <input type="number" id="umbralLuz" th:field="*{umbralLuz}" />
 						</p>
-						<input type="submit" value="Guardar" />
+						<input type="submit" id="btnSubmit" value="Guardar" />
 					</form>
 				</div>
 			</div>
@@ -116,6 +116,32 @@ html, body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+
+	<script>
+		document
+				.getElementById('btnSubmit')
+				.addEventListener(
+						'click',
+						function(event) {
+							var nombre = document.getElementById('nombre').value;
+							var descripcion = document
+									.getElementById('descripcion').value;
+							var establecimiento = document
+									.getElementById('establecimiento').value;
+							var ubicacion = document
+									.getElementById('ubicacion').value;
+							var umbralLuz = document
+									.getElementById('umbralLuz').value;
+
+							if (nombre.length < 2 || descripcion.length < 2
+									|| establecimiento.length < 2
+									|| ubicacion.length < 2 || umbralLuz <= 0) {
+								event.preventDefault(); // Evita el envío del formulario
+								alert('Debes completar todos los campos con 2 caracteres minimos. Ademas "Umbral de luz" no puede ser cero');
+							}
+						});
+	</script>
+
 </body>
 
 </html>

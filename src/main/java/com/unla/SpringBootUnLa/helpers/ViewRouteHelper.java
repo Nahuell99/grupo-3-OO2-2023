@@ -8,6 +8,7 @@ public class ViewRouteHelper {
 	public final static String NUEVO_ALUMBRADO_INTELIGENTE 				= "device/sensorAlumbradoInteligente/nuevoSensor";
 	public final static String ELIMINAR_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/eliminarSensor";
 	public final static String EDITAR_ALUMBRADO_INTELIGENTE 			= "device/sensorAlumbradoInteligente/editarSensor";
+	public final static String SIN_DEVICE								= "device/sensorAlumbradoInteligente/sinDevice";
 	public final static String FORMULARIO_EDITAR_ALUMBRADO_INTELIGENTE 	= "device/sensorAlumbradoInteligente/editarSensorFormulario";
 	public final static String LISTA_ALUMBRADO_INTELIGENTE 				= "device/sensorAlumbradoInteligente/listaSensores";
 	

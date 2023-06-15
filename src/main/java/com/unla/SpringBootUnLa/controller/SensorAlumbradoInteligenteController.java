@@ -63,6 +63,9 @@ public class SensorAlumbradoInteligenteController {
 	public String eliminarSensorAlumbradoInteligente(Model model) {
 		List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de
 																						// dispositivos
+		if(devices.size() == 0){
+			return ViewRouteHelper.SIN_DEVICE;
+		}
 		model.addAttribute("devices", devices); // Pasar la lista al modelo
 		return ViewRouteHelper.ELIMINAR_ALUMBRADO_INTELIGENTE;
 	}
@@ -84,6 +87,9 @@ public class SensorAlumbradoInteligenteController {
 	public String editarSensorAlumbradoInteligente(Model model) {
 		List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de
 																						// dispositivos
+		if(devices.size() == 0){
+			return ViewRouteHelper.SIN_DEVICE;
+		}
 		model.addAttribute("devices", devices); // Pasar la lista al modelo
 		return ViewRouteHelper.EDITAR_ALUMBRADO_INTELIGENTE;
 	}
@@ -121,6 +127,9 @@ public class SensorAlumbradoInteligenteController {
 	public String listaSensorAlumbradoInteligente(Model model) {
 		List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de
 																						// dispositivos activos
+		if(devices.size() == 0){
+			return ViewRouteHelper.SIN_DEVICE;
+		}
 		model.addAttribute("devices", devices); // Pasar la lista al modelo
 		return ViewRouteHelper.LISTA_ALUMBRADO_INTELIGENTE;
 	}
