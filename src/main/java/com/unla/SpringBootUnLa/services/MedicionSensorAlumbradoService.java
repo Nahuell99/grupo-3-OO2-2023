@@ -28,7 +28,7 @@ public class MedicionSensorAlumbradoService {
     }
     
  // Actualizar un registro existente
-    public MedicionSensorAlumbrado updateSensor(MedicionSensorAlumbrado medicion) {
+    public MedicionSensorAlumbrado updateMedicion(MedicionSensorAlumbrado medicion) {
         if (medicion.getId() == 0) {
             throw new IllegalArgumentException("La medicion debe tener un ID válido para ser actualizado");
         }

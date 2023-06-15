@@ -1,14 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de Subtipos de Dispositivos</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Grupo-3-OO2-2023</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/device.css" rel="stylesheet" />
 </head>
+
 <body>
-    <h1>Listado de Subtipos de Dispositivos</h1>
-    <ul>
-        <li><a th:href="@{/device/sensorAlumbradoInteligente}">Sensor de Alumbrado Inteligente</a></li>
-        <!-- Agrega más elementos de lista para los demás subtipos -->
-    </ul>
+	<!-- Responsive navbar-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-lg-5">
+			<a class="navbar-brand" th:href="@{/}">Inicio</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Header-->
+	<header class="py-5">
+		<div class="container px-lg-5">
+			<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+				<div class="m-4 m-lg-5">
+					<h1 class="display-5 fw-bold">Trabajo Practico UNLA</h1>
+					<p class="fs-4">Programación Orientada a Objetos II 2023</p>
+					<p class="fs-4">Grupo 3</p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Page Content-->
+	<section class="pt-4">
+		<div class="container px-lg-5">
+			<!-- Page Features-->
+			<div class="row gx-lg-5">
+				<div class="col-lg-6 col-xxl-4 mb-5">
+					<a th:href="@{/device/sensorAlumbradoInteligente}"
+						style="text-decoration: none;">
+						<div class="card bg-light border-0 h-100">
+							<div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+								<div
+									class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+									<i class="bi bi-lightbulb"></i>
+								</div>
+								<h2 class="fs-4 fw-bold">Sensores de Alumbrado</h2>
+								<p class="mb-0">Sensores que miden la intensidad de luz en
+									el ambiente y prenden o apagan la luz en función del nivel de
+									luminosidad.</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<!-- Agrega más cards para los demás subtipos -->
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Ignacio Mansilla | Gaston
+				Ponce | Alan Gabriel</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
 </body>
+
 </html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,16 +42,22 @@ public class MedicionSensorAlumbradoController {
 	}
 
 	// URL BASE
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/lista/mediciones/{id}")
 	public String listaMedicionesSensorAlumbrado(@PathVariable int id, Model model) {
 		SensorAlumbradoInteligente device = sensorService.getSensorById(id);
 		List<MedicionSensorAlumbrado> mediciones = medicionService.getMedicionesBySensor(device);
 		model.addAttribute("sensorAlumbradoInteligente", device);
 		model.addAttribute("medicionSensorAlumbrado", mediciones);
+		if(mediciones.size() == 0){
+			return ViewRouteHelper.SIN_MEDICIONES;
+		}
 		return ViewRouteHelper.MEDICIONES_ALUMBRADO_INTELIGENTE;
 	}
+	
 
 	// MAPEO PARA TOMAR LAS MEDICIONES Y GENERAR EVENTOS EN FUNCION
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/lista/actualizar/{id}")
 	public String actualizarEventosSensorAlumbrado(@PathVariable int id, Model model) {
 		SensorAlumbradoInteligente sensor = sensorService.getSensorById(id); // Obtener el dispositivo por ID
@@ -58,7 +65,6 @@ public class MedicionSensorAlumbradoController {
 				.getMedicionesBySensorAndAnalizadaFalseOrderByFechaAsc(sensor);
 		System.out.println(medicionesNoAnalizadas);
 		if(medicionesNoAnalizadas.size() == 0){
-			System.out.println(medicionesNoAnalizadas);
 			return ViewRouteHelper.SIN_MEDICIONES_NUEVAS;
 		}
 		
@@ -83,27 +89,11 @@ public class MedicionSensorAlumbradoController {
 			}
 			sensorService.updateSensor(sensor); // Guardar el sensor actualizado en la base de datos
 			medicion.setAnalizada(true); // Marcar la medición como analizada
-			medicionService.updateSensor(medicion); // Actualizar la medición en la base de datos
+			medicionService.updateMedicion(medicion); // Actualizar la medición en la base de datos
 		}
 
 		model.addAttribute("sensorAlumbradoInteligente", sensor); // Pasarel sensor al modelo
 		model.addAttribute("eventos",eventService.getEventsByDevice(sensor));
 		return ViewRouteHelper.EVENTO_ALUMBRADO_INTELIGENTE;
-	}
-
-	@PostMapping
-	public ResponseEntity<MedicionSensorAlumbrado> createMedicion(@RequestBody MedicionSensorAlumbrado medicion) {
-		MedicionSensorAlumbrado createdMedicion = medicionService.saveMedicion(medicion);
-		return ResponseEntity.status(HttpStatus.CREATED).body(createdMedicion);
-	}
-
-	@GetMapping("/sensor/{sensorId}")
-	public ResponseEntity<List<MedicionSensorAlumbrado>> getMedicionesBySensor(@PathVariable long sensorId) {
-		SensorAlumbradoInteligente sensor = sensorService.getSensorById(sensorId);
-		if (sensor == null) {
-			return ResponseEntity.notFound().build();
-		}
-		List<MedicionSensorAlumbrado> mediciones = medicionService.getMedicionesBySensor(sensor);
-		return ResponseEntity.ok(mediciones);
 	}
 }
