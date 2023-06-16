@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Dispositivos Activos</title>
+</head>
+<body>
+    <h1>Listado de Dispositivos Activos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Contenedor Lleno</th>
+                <th>Limpiador Automático Activo</th>
+                <th>Uso Indebido</th>
+                <th>Acciones</th> <!-- Columna para los botones -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre los dispositivos y muestra cada uno en una fila -->
+            <tr th:each="device : ${devices}">
+                <td th:text="${device.id}"></td>
+                <td th:text="${device.nombre}"></td>
+                <td th:text="${device.descripcion}"></td>
+                <td th:text="${device.contenedorLleno}"></td>
+                <td th:text="${device.limpiadorAutomaticoActivo}"></td>
+                <td th:text="${device.usoIndebido}"></td>
+                <td>
+                    <!-- Botones -->
+                    <a th:href="@{/device/recolectorInteligente/lista/eventos/{id}(id=${device.id})}">Ver eventos</a>
+                    <a th:href="@{/device/recolectorInteligente/lista/mediciones/{id}(id=${device.id})}">Ver mediciones</a>
+                    <a th:href="@{/device/recolectorInteligente/lista/actualizar/{id}(id=${device.id})}">Actualizar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -55,51 +55,5 @@ public class SensorAlumbradoInteligente extends Device {
 				+ intensidadLuz + "]";
 	}
 
-	public String getEstablecimiento() {
-		return establecimiento;
-	}
 
-	public void setEstablecimiento(String establecimiento) {
-		this.establecimiento = establecimiento;
-	}
-
-	public String getUbicacionCordenada() {
-		return ubicacionCordenada;
-	}
-
-	public void setUbicacionCordenada(String ubicacionCordenada) {
-		this.ubicacionCordenada = ubicacionCordenada;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-
-	public int getUmbralLuz() {
-		return umbralLuz;
-	}
-
-	public void setUmbralLuz(int umbralLuz) {
-		this.umbralLuz = umbralLuz;
-	}
-
-	public int getIntensidadLuz() {
-		return intensidadLuz;
-	}
-
-	public void setIntensidadLuz(int intensidadLuz) {
-		this.intensidadLuz = intensidadLuz;
-	}
-
-	public List<MedicionSensorAlumbrado> getMediciones() {
-		return mediciones;
-	}
-
-	public void setMediciones(List<MedicionSensorAlumbrado> mediciones) {
-		this.mediciones = mediciones;
-	}
 }
