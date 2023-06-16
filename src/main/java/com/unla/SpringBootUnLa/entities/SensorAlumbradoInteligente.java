@@ -55,6 +55,5 @@ public class SensorAlumbradoInteligente extends Device {
 				+ intensidadLuz + "]";
 	}
 
-		
-	
+
 }

@@ -1,29 +1,127 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de Mediciones</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Grupo-3-OO2-2023</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="/css/device.css" rel="stylesheet" />
+<style>
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.content {
+	flex: 1;
+}
+
+.footer {
+	background-color: #343a40;
+	color: white;
+	padding: 20px;
+}
+
+.navbar-btn {
+	margin-right: 18px;
+}
+</style>
 </head>
 <body>
-    <h1>Listado de Mediciones</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Intensidad de Luz</th>
-                <th>Analizada</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Itera sobre las mediciones y muestra cada una en una fila -->
-            <tr th:each="medicion : ${medicionSensorAlumbrado}">
-                <td th:text="${medicion.id}"></td>
-                <td th:text="${medicion.fecha}"></td>
-                <td th:text="${medicion.intensidadLuz}"></td>
-                <td th:text="${medicion.analizada}"></td>
-            </tr>
-        </tbody>
-    </table>
+	<div class="wrapper">
+		<!-- Responsive navbar-->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container px-lg-5">
+				<a class="navbar-brand" th:href="@{/}">Inicio</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/device/sensorAlumbradoInteligente}">Volver a
+								opciones</a></li>
+					</ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/device/sensorAlumbradoInteligente/lista}">Volver
+								a lista</a></li>
+					</ul>
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- Header-->
+		<!-- Page Content-->
+		<section class="pt-4 content">
+			<div class="container px-lg-5">
+				<!-- Page Features-->
+				<div class="row gx-lg-5">
+					<h1>Listado de Mediciones</h1>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Fecha</th>
+									<th>Intensidad de Luz</th>
+									<th>Analizada</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Itera sobre las mediciones y muestra cada una en una fila -->
+								<tr th:each="medicion : ${medicionSensorAlumbrado}">
+									<td th:text="${medicion.id}"></td>
+									<td th:text="${medicion.fecha}"></td>
+									<td th:text="${medicion.intensidadLuz}"></td>
+									<td th:text="${medicion.analizada}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="push"></div>
+		<!-- Con esto empujo el footer hacia abajo -->
+
+		<!-- Footer-->
+		<footer class="py-5 bg-dark footer">
+			<div class="container">
+				<p class="m-0 text-center">Ignacio Mansilla | Gaston Ponce |
+					Alan Gabriel</p>
+			</div>
+		</footer>
+	</div>
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
 </body>
+
 </html>
+
+

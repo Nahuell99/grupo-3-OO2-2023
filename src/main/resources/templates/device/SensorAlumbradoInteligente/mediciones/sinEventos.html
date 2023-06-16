@@ -2,47 +2,46 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Grupo-3-OO2-2023</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-<!-- Bootstrap icons-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-	rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="/css/device.css" rel="stylesheet" />
-<style>
-html, body {
-	height: 100%;
-}
-
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.content {
-	flex: 1;
-}
-
-.footer {
-	background-color: #343a40;
-	color: white;
-	padding: 20px;
-}
-
-.navbar-btn {
-	margin-right: 18px;
-}
-</style>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Grupo-3-OO2-2023</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+	<!-- Bootstrap icons-->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+		rel="stylesheet" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/device.css" rel="stylesheet" />
+	<style>
+		html, body {
+			height: 100%;
+		}
+		
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+		
+		.content {
+			flex: 1;
+		}
+		
+		.footer {
+			background-color: #343a40;
+			color: white;
+			padding: 20px;
+		}
+		
+		.navbar-btn {
+			margin-right: 18px;
+		}
+	</style>
 </head>
-
 <body>
 	<div class="wrapper">
 		<!-- Responsive navbar-->
@@ -61,42 +60,24 @@ html, body {
 							th:href="@{/device/sensorAlumbradoInteligente}">Volver a
 								opciones</a></li>
 					</ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/device/sensorAlumbradoInteligente/lista}">Volver a
+								lista</a></li>
+					</ul>
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
 		<!-- Header-->
-
 		<!-- Page Content-->
 		<section class="pt-4 content">
 			<div class="container px-lg-5">
 				<!-- Page Features-->
 				<div class="row gx-lg-5">
-					<h1>Formulario de Edicion</h1>
-					<form action="#"
-						th:action="@{/device/sensorAlumbradoInteligente/editar/{id}/guardar(id=*{id})}"
-						th:object="${sensorAlumbradoInteligente}" method="post">
-						<p>
-							Nombre: <input type="text" th:field="*{nombre}" />
-						</p>
-						<p>
-							Descripcion: <input type="text" th:field="*{descripcion}" />
-						</p>
-						<p>
-							Establecimiento: <input type="text" th:field="*{establecimiento}" />
-						</p>
-						<p>
-							Ubicacion: <input type="text" th:field="*{ubicacionCordenada}" />
-						</p>
-						<p>
-							Umbral de luz: <input type="number" th:field="*{umbralLuz}" />
-						</p>
-
-						<input type="submit" value="Guardar" />
-					</form>
+					<h1>Este dipositivo aun no tiene eventos registradas.</h1>					
 				</div>
 			</div>
 		</section>
@@ -121,3 +102,4 @@ html, body {
 </body>
 
 </html>
+

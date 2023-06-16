@@ -3,7 +3,6 @@ package com.unla.SpringBootUnLa.helpers;
 public class ViewRouteHelper {
 
 	private ViewRouteHelper(){}
-
     // Vistas Alumbrado inteligente
     public static final String MENU_OPCIONES = "device/sensorAlumbradoInteligente";
     public static final String CREAR_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/crearSensor";
