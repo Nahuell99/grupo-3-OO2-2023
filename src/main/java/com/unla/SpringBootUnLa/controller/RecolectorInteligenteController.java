@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ public class RecolectorInteligenteController {
     }
 
     // URL BASE
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
     @GetMapping("/recolectorInteligente")
     public String recolectorInteligente(Model model) {
         model.addAttribute("recolectorInteligente", new RecolectorInteligente());
@@ -37,7 +39,7 @@ public class RecolectorInteligenteController {
     }
 
     // CREAR
-    //@PreAuthorize("hasRole('Administrador')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/crear")
     public String crearRecolectorInteligente(Model model) {
         model.addAttribute("recolectorInteligente", new RecolectorInteligente());
@@ -45,7 +47,7 @@ public class RecolectorInteligenteController {
     }
 
     // CREAR
-    //@PreAuthorize("hasRole('Administrador')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/recolectorInteligente/newRecolectorInteligente")
     public ModelAndView newRecolectorInteligente(
             @Valid @ModelAttribute("recolectorInteligente") RecolectorInteligente recolector,
@@ -63,6 +65,7 @@ public class RecolectorInteligenteController {
     }
 
     // ELIMINAR
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/eliminar")
     public String eliminarRecolectorInteligente(Model model) {
         List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
@@ -70,6 +73,7 @@ public class RecolectorInteligenteController {
         return ViewRouteHelper.ELIMINAR_RECOLECTOR_INTELIGENTE;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/recolectorInteligente/eliminar/{id}")
     public ModelAndView eliminarRecolectorInteligente(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -82,6 +86,7 @@ public class RecolectorInteligenteController {
     }
 
     // MODIFICAR
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/editar")
     public String editarRecolectorInteligente(Model model) {
         List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
@@ -90,6 +95,7 @@ public class RecolectorInteligenteController {
     }
 
     // MODIFICAR Formulario
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/editar/{id}")
     public String editarRecolectorInteligente(@PathVariable Long id, Model model) {
         RecolectorInteligente recolector = recolectorService.getRecolectorById(id);
@@ -98,6 +104,7 @@ public class RecolectorInteligenteController {
     }
 
     // MODIFICAR GUARDADO
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/recolectorInteligente/editar/{id}/guardar")
     public ModelAndView guardarRecolectorInteligente(@PathVariable int id, @ModelAttribute("recolectorInteligente") RecolectorInteligente recolector) {
         recolector.setId(id);
@@ -111,6 +118,7 @@ public class RecolectorInteligenteController {
     }
 
     // Lista plana
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
     @GetMapping("/recolectorInteligente/lista")
     public String listaRecolectorInteligente(Model model) {
         List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
