@@ -21,7 +21,7 @@ public class ViewRouteHelper {
     public static final String MENU_OPCIONES_RECOLECTOR = "device/recolectorInteligente";
     public static final String CREAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/crearRecolector";
     public static final String NUEVO_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/nuevoRecolector";
-    public static final String ELIMINAR_RECOLECTOR_INTELIGENTE = "de vice/recolectorInteligente/eliminarRecolector";
+    public static final String ELIMINAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/eliminarRecolector";
     public static final String EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolector";
     public static final String FORMULARIO_EDITAR_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/editarRecolectorFormulario";
     public static final String LISTA_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/listaRecolectores";
