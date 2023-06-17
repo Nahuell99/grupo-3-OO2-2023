@@ -22,13 +22,13 @@ public class HomeController {
 	
 	@GetMapping("/index")
 	public String index() {
-		return com.unla.SpringBootUnLa.helper.ViewRouteHelper.INDEX;
+		return com.unla.SpringBootUnLa.helpers.ViewRouteHelper.INDEX;
 	}
 	
 	@PostMapping("/sensoresH")
 	public ModelAndView mostrarSensores() {
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName(com.unla.SpringBootUnLa.helper.ViewRouteHelper.SENSORES);
+		mv.setViewName(com.unla.SpringBootUnLa.helpers.ViewRouteHelper.SENSORES);
 		mv.addObject("listaSensores", sensorHumedadService.getAll());
 		return mv;
 	}

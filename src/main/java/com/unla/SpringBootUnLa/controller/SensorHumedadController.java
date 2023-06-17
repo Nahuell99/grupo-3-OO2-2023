@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unla.SpringBootUnLa.entities.SensorHumedad;
-import com.unla.SpringBootUnLa.helper.ViewRouteHelper;
+import com.unla.SpringBootUnLa.helpers.ViewRouteHelper;
 import com.unla.SpringBootUnLa.models.SensorHumedadModel;
 import com.unla.SpringBootUnLa.services.ISensorHumedadService;
 import com.unla.SpringBootUnLa.services.implementation.SensorHumedadService;

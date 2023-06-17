@@ -1,4 +1,4 @@
-package com.unla.SpringBootUnLa.helper;
+package com.unla.SpringBootUnLa.helpers;
 
 public class ViewRouteHelper {
 	//HOME
