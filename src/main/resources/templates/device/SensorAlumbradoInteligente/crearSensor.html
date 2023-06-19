@@ -76,28 +76,38 @@ html, body {
 				<!-- Page Features-->
 				<div class="row gx-lg-5">
 					<h1>Formulario de Alta</h1>
-					<form action="#" th:action="@{newSensorAlumbradoInteligente}"
-						th:object="${sensorAlumbradoInteligente}" method="post">
-						<p>
-							Nombre: <input type="text" id="nombre" th:field="*{nombre}" />
-						</p>
-						<p>
-							Descripcion: <input type="text" id="descripcion" th:field="*{descripcion}" />
-						</p>
-						<p>
-							Establecimiento: <input type="text" id="establecimiento" th:field="*{establecimiento}" />
-						</p>
-						<p>
-							Ubicacion: <input type="text" id="ubicacion" th:field="*{ubicacionCordenada}" />
-						</p>
-						<p>
-							Umbral de luz: <input type="number" id="umbralLuz" th:field="*{umbralLuz}" />
-						</p>
+					<form action="#" th:action="@{newSensorAlumbradoInteligente}" th:object="${sensorAlumbradoInteligente}" method="post">
+						<div class="row">
+							<div class="col-md-6">
+								<div>
+									<label for="nombre" class="form-label">Nombre:</label>
+									<input type="text" id="nombre" class="form-control" th:field="*{nombre}" />
+								</div>
+								<div>
+									<label for="descripcion" class="form-label">Descripcion:</label>
+									<input type="text" id="descripcion" class="form-control" th:field="*{descripcion}" />
+								</div>
+								<div>
+									<label for="establecimiento" class="form-label">Establecimiento:</label>
+									<input type="text" id="establecimiento" class="form-control" th:field="*{establecimiento}" />
+								</div>
+								<div>
+									<label for="ubicacion" class="form-label">Ubicacion:</label>
+									<input type="text" id="ubicacion" class="form-control" th:field="*{ubicacionCordenada}" />
+								</div>
+								<div class="mb-3">
+									<label for="umbralLuz" class="form-label">Umbral de luz:</label>
+									<input type="number" id="umbralLuz" class="form-control" th:field="*{umbralLuz}" />
+								</div>
+							</div>
+						</div>
+		
 						<input type="submit" id="btnSubmit" value="Guardar" />
 					</form>
 				</div>
 			</div>
 		</section>
+		
 
 		<div class="push"></div>
 		<!-- Con esto empujo el footer hacia abajo -->
