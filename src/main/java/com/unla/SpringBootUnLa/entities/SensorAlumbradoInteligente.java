@@ -54,6 +54,4 @@ public class SensorAlumbradoInteligente extends Device {
 				+ ubicacionCordenada + ", estado=" + estado + ", umbralLuz=" + umbralLuz + ", intensidadLuz="
 				+ intensidadLuz + "]";
 	}
-
-
 }

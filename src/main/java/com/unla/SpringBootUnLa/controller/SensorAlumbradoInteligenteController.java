@@ -29,7 +29,6 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// URL BASE
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/sensorAlumbradoInteligente")
 	public String sensorAlumbradoInteligente(Model model) {
 		model.addAttribute("sensorAlumbradoInteligente", new SensorAlumbradoInteligente());
