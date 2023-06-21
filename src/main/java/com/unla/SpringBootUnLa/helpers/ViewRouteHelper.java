@@ -16,9 +16,11 @@ public class ViewRouteHelper {
 
     public static final String MEDICIONES_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/mediciones/mediciones";
     public static final String EVENTO_ALUMBRADO_INTELIGENTE = "device/sensorAlumbradoInteligente/mediciones/eventos";
+    public static final String EVENTO_RECOLECTOR_INTELIGENTE = "device/recolectorInteligente/eventos";
     public static final String SIN_MEDICIONES_NUEVAS = "device/sensorAlumbradoInteligente/mediciones/sinMedicionesNuevas";
     public static final String SIN_MEDICIONES = "device/sensorAlumbradoInteligente/mediciones/sinMediciones";
     public static final String SIN_EVENTOS = "device/sensorAlumbradoInteligente/mediciones/sinEventos";
+    public static final String RECOLECTOR_SIN_EVENTOS = "device/recolectorInteligente/sinEventos";
 
     // Vistas Recolector inteligente
     public static final String MENU_OPCIONES_RECOLECTOR = "device/recolectorInteligente";

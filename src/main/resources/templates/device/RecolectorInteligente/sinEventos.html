@@ -2,47 +2,46 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Grupo-3-OO2-2023</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-<!-- Bootstrap icons-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-	rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="/css/device.css" rel="stylesheet" />
-<style>
-html, body {
-	height: 100%;
-}
-
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.content {
-	flex: 1;
-}
-
-.footer {
-	background-color: #343a40;
-	color: white;
-	padding: 20px;
-}
-
-.navbar-btn {
-	margin-right: 18px;
-}
-</style>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Grupo-3-OO2-2023</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+	<!-- Bootstrap icons-->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+		rel="stylesheet" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/device.css" rel="stylesheet" />
+	<style>
+		html, body {
+			height: 100%;
+		}
+		
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+		
+		.content {
+			flex: 1;
+		}
+		
+		.footer {
+			background-color: #343a40;
+			color: white;
+			padding: 20px;
+		}
+		
+		.navbar-btn {
+			margin-right: 18px;
+		}
+	</style>
 </head>
-
 <body>
 	<div class="wrapper">
 		<!-- Responsive navbar-->
@@ -61,40 +60,24 @@ html, body {
 							th:href="@{/device/recolectorInteligente}">Volver a
 								opciones</a></li>
 					</ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/device/recolectorInteligente/lista}">Volver a
+								lista</a></li>
+					</ul>
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
 		<!-- Header-->
-
 		<!-- Page Content-->
 		<section class="pt-4 content">
 			<div class="container px-lg-5">
 				<!-- Page Features-->
 				<div class="row gx-lg-5">
-					<script th:inline="javascript">
-					    function confirmarEliminacion(deviceId) {
-					        if (confirm('¿Estás seguro de que deseas eliminar este dispositivo?')) {
-					            fetch('/device/recolectorInteligente/eliminar/' + deviceId, { method: 'GET' })
-					                .then(function(response) {
-					                    window.location.href = '/device/recolectorInteligente';
-					                })
-					                .catch(function(error) {
-					                });
-					        }
-					    }
-					</script>
-
-					<h1>Eliminar dispositivo</h1>
-					<ul>
-						<li th:each="device : ${devices}"><a href="#"
-							th:onclick="'javascript:confirmarEliminacion(\'' + ${device.id} + '\')'">
-								<span th:text="${device.nombre}"></span>
-						</a></li>
-					</ul>
+					<h1>Este dipositivo aun no tiene eventos registradas.</h1>					
 				</div>
 			</div>
 		</section>
@@ -116,15 +99,7 @@ html, body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
-
 </body>
 
 </html>
-
-
-
-
-
-
-
 

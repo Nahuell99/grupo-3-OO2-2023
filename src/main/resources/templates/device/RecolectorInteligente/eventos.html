@@ -42,7 +42,6 @@ html, body {
 }
 </style>
 </head>
-
 <body>
 	<div class="wrapper">
 		<!-- Responsive navbar-->
@@ -61,40 +60,43 @@ html, body {
 							th:href="@{/device/recolectorInteligente}">Volver a
 								opciones</a></li>
 					</ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/device/recolectorInteligente/lista}">Volver a
+								lista</a></li>
+					</ul>
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
 		<!-- Header-->
-
 		<!-- Page Content-->
 		<section class="pt-4 content">
 			<div class="container px-lg-5">
 				<!-- Page Features-->
 				<div class="row gx-lg-5">
-					<script th:inline="javascript">
-					    function confirmarEliminacion(deviceId) {
-					        if (confirm('¿Estás seguro de que deseas eliminar este dispositivo?')) {
-					            fetch('/device/recolectorInteligente/eliminar/' + deviceId, { method: 'GET' })
-					                .then(function(response) {
-					                    window.location.href = '/device/recolectorInteligente';
-					                })
-					                .catch(function(error) {
-					                });
-					        }
-					    }
-					</script>
-
-					<h1>Eliminar dispositivo</h1>
-					<ul>
-						<li th:each="device : ${devices}"><a href="#"
-							th:onclick="'javascript:confirmarEliminacion(\'' + ${device.id} + '\')'">
-								<span th:text="${device.nombre}"></span>
-						</a></li>
-					</ul>
+					<h1>Listado de Eventos</h1>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Creacion</th>
+									<th>Descripcion</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Itera sobre las mediciones y muestra cada una en una fila -->
+								<tr th:each="evento : ${eventos}">
+									<td th:text="${evento.id}"></td>
+									<td th:text="${evento.createdAt}"></td>
+									<td th:text="${evento.descripcion}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -116,15 +118,7 @@ html, body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
-
 </body>
 
 </html>
-
-
-
-
-
-
-
 

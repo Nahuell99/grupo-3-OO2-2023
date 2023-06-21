@@ -68,8 +68,8 @@ public class RecolectorInteligenteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/eliminar")
     public String eliminarRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
-        model.addAttribute("recolectores", recolectores);
+        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores();
+        model.addAttribute("devices", recolectores);
         return ViewRouteHelper.ELIMINAR_RECOLECTOR_INTELIGENTE;
     }
 
@@ -89,8 +89,8 @@ public class RecolectorInteligenteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/editar")
     public String editarRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
-        model.addAttribute("recolectores", recolectores);
+        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores();
+        model.addAttribute("devices", recolectores);
         return ViewRouteHelper.EDITAR_RECOLECTOR_INTELIGENTE;
     }
 
@@ -121,8 +121,9 @@ public class RecolectorInteligenteController {
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     @GetMapping("/recolectorInteligente/lista")
     public String listaRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorService.getAllActiveRecolectores();
-        model.addAttribute("recolectores", recolectores);
+        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores();
+        System.out.println(recolectores);
+        model.addAttribute("devices", recolectores);
         return ViewRouteHelper.LISTA_RECOLECTOR_INTELIGENTE;
     }
 }
