@@ -14,9 +14,9 @@ public class DeviceModel {
 	private String nombre;
 	private String descripcion;
 	private boolean activo;
-	private List<EventModel> eventos;
+	private List<EventHumedadModel> eventos;
 	
-	public DeviceModel(String nombre, String descripcion, boolean activo, List<EventModel> eventos) {
+	public DeviceModel(String nombre, String descripcion, boolean activo, List<EventHumedadModel> eventos) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;

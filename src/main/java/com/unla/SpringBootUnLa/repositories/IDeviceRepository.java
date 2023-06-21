@@ -12,4 +12,5 @@ public interface IDeviceRepository extends JpaRepository<Device, Integer> {
 	
 	List<Device> findByNombre(String nombre);
 	
+	
 }

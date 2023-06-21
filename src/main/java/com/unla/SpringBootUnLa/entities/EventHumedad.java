@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Event {
+public class EventHumedad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +35,13 @@ public class Event {
 
 	private String descripcion;
 
-	private boolean activo;
+	
 
-	public Event(Device device, String descripcion, boolean activo) {
+	public EventHumedad(Device device, String descripcion) {
 		super();
 		this.device = device;
 		this.descripcion = descripcion;
-		this.activo = activo;
+		
 	}
 
 }

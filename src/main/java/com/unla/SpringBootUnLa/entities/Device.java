@@ -23,7 +23,6 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 @NoArgsConstructor 
-@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Device {
 
 	@Id
@@ -46,7 +45,7 @@ public abstract class Device {
 	private LocalDateTime updatedAt;
 
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Event> eventos = new ArrayList<>();
+	private List<EventHumedad> eventos = new ArrayList<>();
 
 	public Device(String nombre, String descripcion) {
 		super();

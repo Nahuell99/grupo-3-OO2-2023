@@ -1,6 +1,7 @@
 package com.unla.SpringBootUnLa.services.implementation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +15,7 @@ import com.unla.SpringBootUnLa.services.ISensorHumedadService;
 
 
 import org.modelmapper.ModelMapper;
-
+import java.util.ArrayList;
 
 @Service("sensorHumedadService")
 public class SensorHumedadService implements ISensorHumedadService {
@@ -26,9 +27,13 @@ public class SensorHumedadService implements ISensorHumedadService {
 	private ModelMapper modelMapper=new ModelMapper();
 			
 	@Override
-	public List<SensorHumedad> getAll() {
-		
-		return sensorHumedadRepository.findAll();
+	public List<SensorHumedadModel> getAll() {
+		List<SensorHumedadModel> lista=new ArrayList<>();
+		 
+		 for (SensorHumedad s : sensorHumedadRepository.findAll()) {
+			lista.add(modelMapper.map(s,SensorHumedadModel.class));
+		}
+		return lista;
 	}
 
 	@Override
@@ -37,9 +42,10 @@ public class SensorHumedadService implements ISensorHumedadService {
 		
 		return modelMapper.map(sensorNew, SensorHumedadModel.class);
 	}
+	
 
 	@Override
-	public boolean remove(int id) {
+	public boolean remove(long id) {
 		try {
 			sensorHumedadRepository.deleteById(id);
 			return true;
@@ -49,6 +55,15 @@ public class SensorHumedadService implements ISensorHumedadService {
 
 		}
 	}
+
+	
+	public SensorHumedad getdById(long id) {
+		
+		return sensorHumedadRepository.findById(id).orElse(null);
+		
+	}
+	
+	
 	
 
 }

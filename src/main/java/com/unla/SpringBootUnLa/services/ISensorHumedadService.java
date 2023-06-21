@@ -7,9 +7,11 @@ import com.unla.SpringBootUnLa.models.SensorHumedadModel;
 
 public interface ISensorHumedadService {
 	
-	public List<SensorHumedad> getAll();
+	public List<SensorHumedadModel> getAll();
 	public SensorHumedadModel insertOrUpdate(SensorHumedad sensor);
-	public boolean remove(int id);
+	public boolean remove(long id);
+	public SensorHumedad getdById(long id);
+	
 	
 	
 }

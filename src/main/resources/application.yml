@@ -1,6 +1,6 @@
 spring:
   autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+    exclude:
   datasource:
     url: jdbc:mysql://localhost:3306/bd-grupo-3-OO2-2023
     username: root
