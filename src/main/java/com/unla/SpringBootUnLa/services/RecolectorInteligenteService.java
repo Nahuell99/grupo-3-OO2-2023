@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.unla.SpringBootUnLa.entities.RecolectorInteligente;
+import com.unla.SpringBootUnLa.entities.SensorAlumbradoInteligente;
 import com.unla.SpringBootUnLa.repositories.IRecolectorInteligenteRepository;
 
 @Service
@@ -53,7 +54,9 @@ public class RecolectorInteligenteService {
     }
 
     public void deleteRecolector(long recolectorId) {
-        recolectorRepository.deleteById(recolectorId);
+        RecolectorInteligente re = this.getRecolectorById(recolectorId);
+    	re.setActivo(false);
+    	this.saveRecolector(re);
     }
 
 }

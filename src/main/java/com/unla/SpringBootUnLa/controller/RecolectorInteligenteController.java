@@ -68,7 +68,7 @@ public class RecolectorInteligenteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/recolectorInteligente/eliminar")
     public String eliminarRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores();
+        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores().stream().filter(r -> r.isActivo()).toList();
         model.addAttribute("devices", recolectores);
         return ViewRouteHelper.ELIMINAR_RECOLECTOR_INTELIGENTE;
     }
