@@ -2,6 +2,7 @@ package com.unla.SpringBootUnLa.helpers;
 
 public class ViewRouteHelper {
 	//HOME
+
 	public final static String INDEX="device";
 	
 	//Sensor de humedad
@@ -19,5 +20,5 @@ public class ViewRouteHelper {
 	public final static String ListaDeEventos="eventoHumedad/eventosHumedad";
 	public final static String SIN_EVENTOS="eventoHumedad/sinEventosHumedad";
 	
+
 	
-}

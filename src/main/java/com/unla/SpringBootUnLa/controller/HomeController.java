@@ -17,9 +17,11 @@ import com.unla.SpringBootUnLa.services.ISensorHumedadService;
 @RequestMapping("/index")
 public class HomeController {
 	
+
 	@GetMapping(" ")
 	public ModelAndView index() {
 		ModelAndView mv=new ModelAndView(ViewRouteHelper.INDEX);
+
 		return mv;
 	}
 	
