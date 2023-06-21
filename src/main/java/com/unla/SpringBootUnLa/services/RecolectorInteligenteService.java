@@ -56,7 +56,7 @@ public class RecolectorInteligenteService {
     public void deleteRecolector(long recolectorId) {
         RecolectorInteligente re = this.getRecolectorById(recolectorId);
     	re.setActivo(false);
-    	this.saveRecolector(re);
+    	recolectorRepository.save(re);
     }
 
 }
