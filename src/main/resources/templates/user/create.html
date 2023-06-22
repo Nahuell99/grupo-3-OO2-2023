@@ -67,11 +67,13 @@
 		<form action="#" th:action="@{newCreate}" method="POST" onsubmit="return validateForm()">
 			<div class="form-group">
 				<label for="username">Usuario</label>
-				<input type="text" class="form-control" id="username" name="username" required th:field="${user.username}">
+				<input type="text" class="form-control" id="username" name="username" required
+					th:field="${user.username}">
 			</div>
 			<div class="form-group">
 				<label for="password">Contraseña</label>
-				<input type="password" class="form-control" id="password" name="password" required th:field="${user.password}">
+				<input type="password" class="form-control" id="password" name="password" required
+					th:field="${user.password}">
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirmar Contraseña</label>
@@ -87,7 +89,7 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Crear Usuario</button>
 		</form>
-	</div>	
+	</div>
 
 	<div class="push"></div>
 	<!-- Con esto empujo el footer hacia abajo -->
@@ -106,20 +108,20 @@
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
 	<script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-            var confirmPasswordError = document.getElementById("confirmPasswordError");
+		function validateForm() {
+			var password = document.getElementById("password").value;
+			var confirmPassword = document.getElementById("confirmPassword").value;
+			var confirmPasswordError = document.getElementById("confirmPasswordError");
 
-            if (password !== confirmPassword) {
-                confirmPasswordError.textContent = "Las contraseñas no coinciden";
-                return false;
-            } else {
-                confirmPasswordError.textContent = "";
-                return true;
-            }
-        }
-    </script>
+			if (password !== confirmPassword) {
+				confirmPasswordError.textContent = "Las contraseñas no coinciden";
+				return false;
+			} else {
+				confirmPasswordError.textContent = "";
+				return true;
+			}
+		}
+	</script>
 </body>
 
 </html>

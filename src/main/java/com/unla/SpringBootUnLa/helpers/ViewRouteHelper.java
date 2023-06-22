@@ -37,4 +37,5 @@ public class ViewRouteHelper {
     // USER
     public static final String USER_ABM_USER = "user/abmUser";
     public static final String USER_CREATE = "user/create";
+    public static final String USER_EDIT = "user/edit";
 }

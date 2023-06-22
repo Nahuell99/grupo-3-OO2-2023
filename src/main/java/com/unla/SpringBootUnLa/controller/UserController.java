@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.unla.SpringBootUnLa.entities.User;
 import com.unla.SpringBootUnLa.entities.UserRole;
@@ -71,21 +72,6 @@ public class UserController {
         return ViewRouteHelper.USER_ABM_USER;
     }
 
-	@GetMapping("/abmUser/edit/{id}")
-	public String editUserForm(@PathVariable("id") int userId, Model model) {
-		User user = userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "user/edit"; // Aquí debes crear la vista correspondiente al formulario de edición de
-							// usuarios
-	}
-
-	@PostMapping("/abmUser/edit/{id}")
-	public String editUser(@PathVariable("id") int userId, @ModelAttribute("user") User user) {
-		user.setId(userId);
-		userService.updateUser(user);
-		return "redirect:/admin/users"; // Redirige al listado de usuarios después de editar uno
-	}
-
 	@GetMapping("/abmUser/delete/{id}")
 	public String deleteUser(@PathVariable("id") int userId, Model model) {
 		
@@ -99,6 +85,29 @@ public class UserController {
 		userService.deleteReactiveUser(userId, true);
 		model.addAttribute("users", userService.getAllUsers());
         return ViewRouteHelper.USER_ABM_USER;
+	}
+	
+	@GetMapping("/abmUser/edit/{id}")
+	public String editUserForm(@PathVariable("id") int userId, Model model) {
+		User user = userService.getUserById(userId);
+		UserRole userRole = userRoleService.findByUserId(userId);
+		model.addAttribute("user", user);
+		model.addAttribute("user", userRole);
+		return ViewRouteHelper.USER_EDIT;
+	}
+
+	@PostMapping("/abmUser/edit/{id}/guardar")
+	public String editUser(@PathVariable("id") int userId, @ModelAttribute("user") User user, @ModelAttribute("userRole") UserRole userRole) {
+		user.setId(userId);
+		user.setCreatedAt(userService.getUserById(userId).getCreatedAt());
+		userService.updateUser(user);
+
+		ModelAndView mV = new ModelAndView();
+		mV.setViewName(ViewRouteHelper.NUEVO_ALUMBRADO_INTELIGENTE);
+		mV.addObject("users", userService.getAllUsers());
+		return ViewRouteHelper.USER_EDIT;
+		
+		
 	}
 
 }

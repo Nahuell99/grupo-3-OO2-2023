@@ -33,5 +33,9 @@ public class UserRoleService {
 	public void deleteUser(int userId) {
 		userRoleRepository.deleteById(userId);
 	}
+	
+	public UserRole findByUserId(int userId) {
+		return userRoleRepository.findByUserId(userId);
+	}
 
 }

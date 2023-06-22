@@ -80,7 +80,10 @@
                     <tr th:each="user : ${users}">
                         <td th:text="${user.id}"></td>
                         <td th:text="${user.username}"></td>
-                        <td th:text="${user.enabled}"></td>
+                        <td>
+                            <!-- Mostrar el estado del usuario -->
+                            <span th:text="${user.enabled} ? 'Activo' : 'Inactivo'"></span>
+                        </td>
                         <td th:text="${user.createdAt}"></td>
                         <td th:text="${user.updatedAt}"></td>
                         <td>
