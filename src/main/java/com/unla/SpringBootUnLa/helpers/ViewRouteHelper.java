@@ -35,6 +35,6 @@ public class ViewRouteHelper {
     public static final String DEVICE_LIST = "device";
 
     // USER
-    public static final String USER_LOGIN = "user/login";
-    public static final String USER_LOGOUT = "user/logout";
+    public static final String USER_ABM_USER = "user/abmUser";
+    public static final String USER_CREATE = "user/create";
 }
