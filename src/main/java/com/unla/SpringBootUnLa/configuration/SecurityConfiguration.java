@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.unla.SpringBootUnLa.services.implementation.UserService;
+
+import com.unla.SpringBootUnLa.services.UserService;
+
 
 @Configuration
 @EnableWebSecurity

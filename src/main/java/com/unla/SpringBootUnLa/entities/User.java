@@ -15,11 +15,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
+
+
+
+
+import lombok.Data;
 
 @Entity
-@Getter @Setter
 public class User {
 
 	@Id
@@ -52,9 +54,11 @@ public class User {
 		this.enabled = enabled;
 		this.userRoles = userRoles;
 	}
+
+
+
+	public User() {}
 	
-	public User() {
-	}
 
 	public String getUsername() {
 		return username;

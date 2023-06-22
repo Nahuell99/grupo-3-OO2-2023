@@ -16,11 +16,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+
 import lombok.Getter;
 import lombok.Setter;
 
+import lombok.Data;
+
 @Entity
-@Getter @Setter
+
 @Table(name="user_role", uniqueConstraints=@UniqueConstraint(columnNames= {"role", "user_id"}))
 public class UserRole {
 
@@ -51,7 +54,7 @@ public class UserRole {
 	
 	public UserRole() {
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -93,11 +96,13 @@ public class UserRole {
 	}
 
 	@Override
+
 	public String toString() {
 		return "UserRole [id=" + id + ", role=" + role + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 	@Override
+
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -113,4 +118,7 @@ public class UserRole {
 		UserRole other = (UserRole) obj;
 		return id == other.id;
 	}
+
 }
+
+

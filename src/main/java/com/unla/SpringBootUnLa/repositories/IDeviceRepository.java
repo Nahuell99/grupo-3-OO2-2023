@@ -12,5 +12,9 @@ public interface IDeviceRepository extends JpaRepository<Device, Integer> {
 	
 	List<Device> findByNombre(String nombre);
 	
+
+	//Obtener los dispositivos activos ordenados por fecha de creación:
+	List<Device> findByActivoTrueOrderByCreatedAt();
+
 	
 }

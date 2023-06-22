@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.unla.SpringBootUnLa.entities.EventHumedad;
+import com.unla.SpringBootUnLa.entities.Event;
 import com.unla.SpringBootUnLa.entities.MedicionSensorHumedad;
 
 @Repository("eventHumedadRepository")
-public interface IEventHumedadRepository extends JpaRepository<EventHumedad, Integer> {
+public interface IEventHumedadRepository extends JpaRepository<Event, Integer> {
 	
-	public abstract EventHumedad getById(long id);
+	public abstract Event getById(long id);
 	 
 }

@@ -1,7 +1,8 @@
 package com.unla.SpringBootUnLa.controller;
-import com.unla.SpringBootUnLa.entities.EventHumedad;
+import com.unla.SpringBootUnLa.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,7 @@ import com.unla.SpringBootUnLa.services.IEventHumedadService;
 import com.unla.SpringBootUnLa.services.IMedicionHumedadService;
 import com.unla.SpringBootUnLa.services.ISensorHumedadService;
 import com.unla.SpringBootUnLa.services.implementation.SensorHumedadService;
-
+import com.unla.SpringBootUnLa.entities.Device;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,6 +32,7 @@ import com.unla.SpringBootUnLa.models.MedicionHumedadModel;
 @Controller
 @RequestMapping("/sensorHumedad")
 public class SensorHumedadController {
+	
 	private MedicionHumedadModel medicion=new MedicionHumedadModel();
 	@Autowired
 	@Qualifier("sensorHumedadService")
@@ -51,13 +53,14 @@ public class SensorHumedadController {
 		model.addAttribute("sensorHumedad",new SensorHumedadModel());
 		return ViewRouteHelper.HOME_SENSOR;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/form")
 	public String AñadirSensor(Model model) {
 		model.addAttribute("sensor",new SensorHumedadModel());
 		return ViewRouteHelper.CREAR_SENSOR;
 		
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/nuevoSensor")
 	public ModelAndView nuevoSensor( @ModelAttribute("sensor") SensorHumedadModel sensorModelo, BindingResult b) {
 		ModelAndView mv=new ModelAndView();
@@ -75,7 +78,7 @@ public class SensorHumedadController {
 		
 		return mv;
 	}
-	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/listaSensor")
 	public ModelAndView mostrarSensores(@ModelAttribute("sensor")SensorHumedadModel sensorM ) {
 		ModelAndView mv=new ModelAndView();
@@ -84,14 +87,14 @@ public class SensorHumedadController {
 		return mv;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/editar")
 	public ModelAndView editarSensor() {
 		ModelAndView mv=new ModelAndView(ViewRouteHelper.EDITAR_SENSOR);
 		mv.addObject("devices",sensorHumedadService.getAll());
 		return mv;
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/editar/{id}")
 	public String editarSensor(@PathVariable int id,Model model) {
 		
@@ -99,7 +102,7 @@ public class SensorHumedadController {
 		model.addAttribute("sensor",modelMapper.map(s, SensorHumedadModel.class));
 		return ViewRouteHelper.EDITAR_SENSOR_FORM;
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/editar/{id}/guardar")
 	public ModelAndView guardarSensorModificado(@PathVariable int id, @ModelAttribute("sensor") SensorHumedadModel sensor) {
 
@@ -111,67 +114,69 @@ public class SensorHumedadController {
 	}
 	
 	
-		
-		@GetMapping("/eliminar")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/eliminar")
 		public ModelAndView eliminarSensor() {
 			ModelAndView mv=new ModelAndView();
 			mv.setViewName(ViewRouteHelper.ELIMINAR_SENSOR);
 			mv.addObject("devices",sensorHumedadService.getAll());
 			return mv;
-		}
+	}
 
-		
-		@GetMapping("/eliminar/{id}")
-		public ModelAndView eliminarSensor(@PathVariable long id) {
+	@PreAuthorize("hasRole('ROLE_ADMIN')")	
+	@GetMapping("/eliminar/{id}")
+	public ModelAndView eliminarSensor(@PathVariable long id) {
 			sensorHumedadService.remove(id);
 			ModelAndView mv=new ModelAndView();
 			mv.setViewName(ViewRouteHelper.HOME_SENSOR); 
 			
 			return mv;
-		}
-	
-	   @GetMapping("/listaSensor/actualizarLista/{id}")
-	   public ModelAndView actualizarLista(@PathVariable long id) {
-		   	
-		   SensorHumedad s=sensorHumedadService.getdById(id);
-		   MedicionSensorHumedad medicion= s.getMedicion();
+	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/listaSensor/actualizarLista/{id}")
+	public ModelAndView actualizarLista(@PathVariable long id) {
+		Event e;
+	   Device s=sensorHumedadService.getdById(id);
 		   
-		 
-		   medicion.setValorHumedad(medicion.getValorHumedad()-10);	
+	  MedicionSensorHumedad medicion= sensorHumedadService.getdById(id).getMedicion();
+		   
+		   
+	medicion.setValorHumedad(medicion.getValorHumedad()-10);	
 			  
-		   if(medicion.getValorHumedad()<=medicion.getSensor().getValorMinHumedad()) {
-				   medicion.setValorHumedad(medicion.getSensor().getValorMaxHumedad());
-				   EventHumedad e=new EventHumedad(s,"se regó por nivel bajo de humedad");
-				   s.getEventos().add(e);
-				   sensorHumedadService.insertOrUpdate(s);
-			   }
+	 	if(medicion.getValorHumedad()<=medicion.getSensor().getValorMinHumedad()) {
+			 medicion.setValorHumedad(medicion.getSensor().getValorMaxHumedad());
+			 e=new Event(s,"se regó por nivel bajo de humedad",LocalDateTime.now());
+			 s.getEventos().add(e);
+			sensorHumedadService.insertOrUpdate((SensorHumedad) s);
+	 	}
 		  
-		   medicionHumedadService.insertOrUpdate(medicion);
-		   ModelAndView mv=new ModelAndView();
-		   mv.setViewName(ViewRouteHelper.LISTA_SENSORES);
-		   mv.addObject("devices",sensorHumedadService.getAll());
+		  medicionHumedadService.insertOrUpdate(medicion);
+		  ModelAndView mv=new ModelAndView();
+          mv.setViewName(ViewRouteHelper.LISTA_SENSORES);
+		  mv.addObject("devices",sensorHumedadService.getAll());
 		  
-		   return mv;
+		 return mv;
 	   }
-	   
-	   @GetMapping("/listaSensor/eventos/{id}")
-	   public ModelAndView mostrarEventos(@PathVariable int id) {  
-		   ModelAndView mv=new ModelAndView();
-		   SensorHumedad s=sensorHumedadService.getdById(id);
+	
+	 @PreAuthorize("hasRole('ROLE_ADMIN')")
+	 @GetMapping("/listaSensor/eventos/{id}")
+	 public ModelAndView mostrarEventos(@PathVariable int id) {  
+		 ModelAndView mv=new ModelAndView();
+		 SensorHumedad s=sensorHumedadService.getdById(id);
 		   
-		   if(s.getEventos().size()==0) {
+		 if(s.getEventos().size()==0) {
 			    mv.setViewName(ViewRouteHelper.SIN_EVENTOS);
 		   }
-		   else {
-			    mv.setViewName(ViewRouteHelper.ListaDeEventos);
-			    mv.addObject("eventos",s.getEventos());
+		 else {
+		      mv.setViewName(ViewRouteHelper.ListaDeEventos);
+			  mv.addObject("eventos",s.getEventos());
 		   }
 		  
 		   return mv;
 	   }
-	   
-	   @GetMapping("/listaSensor/activar/{id}")
-	   public ModelAndView activarSensor(@PathVariable int id) {
+	  @PreAuthorize("hasRole('ROLE_ADMIN')")
+	  @GetMapping("/listaSensor/activar/{id}")
+	  public ModelAndView activarSensor(@PathVariable int id) {
 		   SensorHumedad s=sensorHumedadService.getdById(id);
 		   if(s.getMedicion()==null) {
 			   MedicionSensorHumedad m=new MedicionSensorHumedad(s,LocalDateTime.now(),50);

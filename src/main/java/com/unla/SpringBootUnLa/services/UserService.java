@@ -1,4 +1,4 @@
-package com.unla.SpringBootUnLa.services.implementation;
+package com.unla.SpringBootUnLa.services;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,18 +28,21 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.unla.SpringBootUnLa.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
+		}
 		return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
 	}
 
 	private User buildUser(com.unla.SpringBootUnLa.entities.User user, List<GrantedAuthority> grantedAuthorities) {
 		return new User(user.getUsername(), user.getPassword(), user.isEnabled(),
-						true, true, true, //accountNonExpired, credentialsNonExpired, accountNonLocked,
-						grantedAuthorities);
+				true, true, true, // accountNonExpired, credentialsNonExpired, accountNonLocked,
+				grantedAuthorities);
 	}
 
 	private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		for(UserRole userRole: userRoles) {
+		for (UserRole userRole : userRoles) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole()));
 		}
 		return new ArrayList<>(grantedAuthorities);

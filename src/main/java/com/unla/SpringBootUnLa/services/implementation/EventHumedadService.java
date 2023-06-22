@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.unla.SpringBootUnLa.entities.EventHumedad;
+import com.unla.SpringBootUnLa.entities.Event;
 import com.unla.SpringBootUnLa.entities.MedicionSensorHumedad;
 import com.unla.SpringBootUnLa.models.EventHumedadModel;
 import com.unla.SpringBootUnLa.models.SensorHumedadModel;
@@ -25,7 +25,7 @@ public class EventHumedadService implements IEventHumedadService {
 	private ModelMapper modelMapper=new ModelMapper();
 	
 	@Override
-	public List<EventHumedad> getAll() {
+	public List<Event> getAll() {
 		
 		return eventRepository.findAll();
 		
@@ -33,7 +33,7 @@ public class EventHumedadService implements IEventHumedadService {
 
 	@Override
 	public EventHumedadModel insertOrUpdate(EventHumedadModel eventModel) {
-		EventHumedad event= eventRepository.save(modelMapper.map(eventModel, EventHumedad.class));
+		Event event= eventRepository.save(modelMapper.map(eventModel, Event.class));
 		return modelMapper.map(event, EventHumedadModel.class);
 	}
 
@@ -51,7 +51,7 @@ public class EventHumedadService implements IEventHumedadService {
 	}
 
 	@Override
-	public EventHumedad getById(int id) {
+	public Event getById(int id) {
 		
 		return eventRepository.findById(id).orElse(null);
 	}
