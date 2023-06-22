@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.unla.SpringBootUnLa.entities.User;
 import com.unla.SpringBootUnLa.entities.UserRole;
@@ -92,22 +90,32 @@ public class UserController {
 		User user = userService.getUserById(userId);
 		UserRole userRole = userRoleService.findByUserId(userId);
 		model.addAttribute("user", user);
-		model.addAttribute("user", userRole);
+		model.addAttribute("userRole", userRole);
 		return ViewRouteHelper.USER_EDIT;
 	}
 
 	@PostMapping("/abmUser/edit/{id}/guardar")
-	public String editUser(@PathVariable("id") int userId, @ModelAttribute("user") User user, @ModelAttribute("userRole") UserRole userRole) {
+	public String editUser(@PathVariable("id") int userId, @ModelAttribute("user") User user, @ModelAttribute("userRole") UserRole userRole, Model model) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
 		user.setId(userId);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setCreatedAt(userService.getUserById(userId).getCreatedAt());
+		user.setEnabled(userService.getUserById(userId).isEnabled());
 		userService.updateUser(user);
 
-		ModelAndView mV = new ModelAndView();
-		mV.setViewName(ViewRouteHelper.NUEVO_ALUMBRADO_INTELIGENTE);
-		mV.addObject("users", userService.getAllUsers());
-		return ViewRouteHelper.USER_EDIT;
+		System.out.println(userRole);
+		System.out.println(userRole.getUser());
+
+		userRole.setCreatedAt(userRoleService.getUserRoleById(userRole.getId()).getCreatedAt());
+		userRole.setUser(user);
 		
 		
+		userRoleService.updateUserRole(userRole);
+		
+		
+		model.addAttribute("users", userService.getAllUsers());
+		return ViewRouteHelper.USER_ABM_USER;
 	}
 
 }

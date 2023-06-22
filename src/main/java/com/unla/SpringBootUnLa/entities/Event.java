@@ -1,7 +1,6 @@
 package com.unla.SpringBootUnLa.entities;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import org.hibernate.annotations.UpdateTimestamp;
 

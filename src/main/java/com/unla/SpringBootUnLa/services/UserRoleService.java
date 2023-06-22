@@ -1,14 +1,12 @@
 package com.unla.SpringBootUnLa.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.SpringBootUnLa.entities.UserRole;
-import com.unla.SpringBootUnLa.repositories.IUserRepository;
 import com.unla.SpringBootUnLa.repositories.IUserRoleRepository;
 
 @Service("userRoleService")
@@ -34,6 +32,12 @@ public class UserRoleService {
 		userRoleRepository.deleteById(userId);
 	}
 	
+	//Traer rol por id
+	public UserRole getUserRoleById(int id) {
+        return userRoleRepository.findById(id).orElse(null);
+    }
+	
+	//Traer Rol de un usuario particular
 	public UserRole findByUserId(int userId) {
 		return userRoleRepository.findByUserId(userId);
 	}
