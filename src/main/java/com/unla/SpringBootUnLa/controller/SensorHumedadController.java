@@ -78,7 +78,7 @@ public class SensorHumedadController {
 		
 		return mv;
 	}
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/listaSensor")
 	public ModelAndView mostrarSensores(@ModelAttribute("sensor")SensorHumedadModel sensorM ) {
 		ModelAndView mv=new ModelAndView();
@@ -123,7 +123,7 @@ public class SensorHumedadController {
 			return mv;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")	
 	@GetMapping("/eliminar/{id}")
 	public ModelAndView eliminarSensor(@PathVariable long id) {
 			sensorHumedadService.remove(id);
