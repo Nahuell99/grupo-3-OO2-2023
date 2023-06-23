@@ -120,7 +120,7 @@ public class RecolectorInteligenteController {
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     @GetMapping("/recolectorInteligente/lista")
     public String listaRecolectorInteligente(Model model) {
-        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores();
+        List<RecolectorInteligente> recolectores = recolectorService.getAllRecolectores().stream().filter(r -> r.isActivo()).toList();;
         System.out.println(recolectores);
         model.addAttribute("devices", recolectores);
         return ViewRouteHelper.LISTA_RECOLECTOR_INTELIGENTE;

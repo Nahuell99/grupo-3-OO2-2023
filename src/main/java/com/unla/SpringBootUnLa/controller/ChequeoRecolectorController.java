@@ -33,6 +33,9 @@ public class ChequeoRecolectorController {
         RecolectorInteligente r = recolectorservice.getRecolectorById(id);
         model.addAttribute("recolectorInteligente", r);
 		model.addAttribute("eventos", eventService.getEventsByDevice(r));
+        if(eventService.getEventsByDevice(r).size() == 0){
+			return ViewRouteHelper.RECOLECTOR_SIN_EVENTOS;
+		}
         return ViewRouteHelper.EVENTO_RECOLECTOR_INTELIGENTE;
     }
 
