@@ -72,6 +72,9 @@ public class UserService implements UserDetailsService {
 		user.setEnabled(status);
     	this.updateUser(user);
 	}
-	
+
+	public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 	
 }

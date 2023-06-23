@@ -53,7 +53,15 @@ public class UserController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/abmUser/newCreate")
     public String createUser(@ModelAttribute("user") User user, @ModelAttribute("userRole") UserRole userRole, Model model) {
-        // Encriptar la contraseña antes de guardarla en la base de datos
+		// Verificar si el usuario ya existe
+	    if (userService.existsByUsername(user.getUsername())) {
+	        // El usuario ya existe, mostrar mensaje de error
+	        model.addAttribute("errorMessage", "El usuario ya se encuentra utilizado.");
+	        model.addAttribute("users", userService.getAllUsers());
+	        return ViewRouteHelper.USER_CREATE;
+	    }
+		
+		// Encriptar la contraseña antes de guardarla en la base de datos
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
@@ -97,6 +105,16 @@ public class UserController {
 	@PostMapping("/abmUser/edit/{id}/guardar")
 	public String editUser(@PathVariable("id") int userId, @ModelAttribute("user") User user, @ModelAttribute("userRole") UserRole userRole, Model model) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// Verificar si el usuario ya existe
+	    if (userService.existsByUsername(user.getUsername())) {
+	        // El usuario ya existe, mostrar mensaje de error
+	        model.addAttribute("errorMessage", "El usuario ya se encuentra utilizado.");
+	        User userActual = userService.getUserById(userId);
+			UserRole userRoleActual = userRoleService.findByUserId(userId);
+	        model.addAttribute("user", userActual);
+			model.addAttribute("userRole", userRoleActual);
+	        return ViewRouteHelper.USER_EDIT;
+	    }
 		
 		user.setId(userId);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -110,9 +128,7 @@ public class UserController {
 		userRole.setCreatedAt(userRoleService.getUserRoleById(userRole.getId()).getCreatedAt());
 		userRole.setUser(user);
 		
-		
 		userRoleService.updateUserRole(userRole);
-		
 		
 		model.addAttribute("users", userService.getAllUsers());
 		return ViewRouteHelper.USER_ABM_USER;
