@@ -3,6 +3,7 @@ package com.unla.SpringBootUnLa.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class MedicionSensorHumedad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sensor_id")
 	private SensorHumedad sensor;
 

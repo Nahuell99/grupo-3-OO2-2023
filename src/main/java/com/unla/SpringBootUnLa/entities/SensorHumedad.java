@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.unla.SpringBootUnLa.models.MedicionHumedadModel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class SensorHumedad extends Device{
 	private int	valorMaxHumedad;
 	
 	
-	@OneToOne(mappedBy = "sensor")
+	@OneToOne(mappedBy = "sensor", cascade= CascadeType.ALL)
 	private MedicionSensorHumedad medicion;
 
 	
