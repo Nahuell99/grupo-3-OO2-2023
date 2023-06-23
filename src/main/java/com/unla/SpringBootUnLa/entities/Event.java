@@ -46,4 +46,10 @@ public class Event {
 		this.activo = true;
 	}
 
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", descripcion="
+				+ descripcion + ", activo=" + activo + "]";
+	}
+
 }

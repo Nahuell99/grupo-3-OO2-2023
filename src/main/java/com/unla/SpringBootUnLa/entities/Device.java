@@ -52,4 +52,10 @@ public abstract class Device {
 		this.activo = true;
 	}
 
+	@Override
+	public String toString() {
+		return "Device [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
 }

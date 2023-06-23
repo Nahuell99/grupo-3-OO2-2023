@@ -42,5 +42,11 @@ public class MedicionSensorAlumbrado {
 	
 	public MedicionSensorAlumbrado() {
 	}
+
+	@Override
+	public String toString() {
+		return "MedicionSensorAlumbrado [id=" + id + ", fecha=" + fecha + ", intensidadLuz=" + intensidadLuz
+				+ ", analizada=" + analizada + "]";
+	}
 	
 }
