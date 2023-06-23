@@ -120,7 +120,7 @@ public class SensorAlumbradoInteligenteController {
 	}
 
 	// Lista plana
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PreAuthorize("hasAnyRole('ROLE_AUDITOR', 'ROLE_ADMIN')")
 	@GetMapping("/sensorAlumbradoInteligente/lista")
 	public String listaSensorAlumbradoInteligente(Model model) {
 		List<SensorAlumbradoInteligente> devices = sensorService.getAllActiveSensors(); // Obtener la lista de

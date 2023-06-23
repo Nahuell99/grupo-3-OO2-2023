@@ -94,7 +94,10 @@ html, body {
 									<td th:text="${medicion.id}"></td>
 									<td th:text="${medicion.fecha}"></td>
 									<td th:text="${medicion.intensidadLuz}"></td>
-									<td th:text="${medicion.analizada}"></td>
+									<td>
+										<!-- Mostrar el estado de la medicion -->
+										<span th:text="${medicion.analizada} ? 'Analizada' : 'Pendiente de analizar'"></span>
+									</td>
 								</tr>
 							</tbody>
 						</table>

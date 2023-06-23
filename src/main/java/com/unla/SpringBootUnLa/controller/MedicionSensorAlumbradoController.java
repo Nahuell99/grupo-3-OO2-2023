@@ -36,7 +36,7 @@ public class MedicionSensorAlumbradoController {
 	}
 
 	// URL BASE
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PreAuthorize("hasAnyRole('ROLE_AUDITOR', 'ROLE_ADMIN')")
 	@GetMapping("/lista/mediciones/{id}")
 	public String listaMedicionesSensorAlumbrado(@PathVariable int id, Model model) {
 		SensorAlumbradoInteligente device = sensorService.getSensorById(id);
@@ -51,7 +51,7 @@ public class MedicionSensorAlumbradoController {
 	
 
 	// MAPEO PARA TOMAR LAS MEDICIONES Y GENERAR EVENTOS EN FUNCION
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PreAuthorize("hasAnyRole('ROLE_AUDITOR', 'ROLE_ADMIN')")
 	@GetMapping("/lista/actualizar/{id}")
 	public String actualizarEventosSensorAlumbrado(@PathVariable int id, Model model) {
 		SensorAlumbradoInteligente sensor = sensorService.getSensorById(id); // Obtener el dispositivo por ID

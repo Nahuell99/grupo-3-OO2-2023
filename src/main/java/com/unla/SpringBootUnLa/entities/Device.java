@@ -58,6 +58,7 @@ public abstract class Device {
 
 	@Override
 	public String toString() {
+
 		return "\nDevice [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
@@ -134,4 +135,8 @@ public abstract class Device {
 	public void setEventos(List<Event> eventos) {
 		this.eventos = eventos;
 	}
+
+	
+
+
 }

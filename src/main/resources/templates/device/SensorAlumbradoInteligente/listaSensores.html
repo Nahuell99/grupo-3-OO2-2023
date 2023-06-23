@@ -61,6 +61,7 @@
 								opciones</a></li>
 					</ul>
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" th:href="@{/abmUser}">Gestionar usuarios</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
@@ -97,7 +98,10 @@
 									<td th:text="${device.descripcion}"></td>
 									<td th:text="${device.establecimiento}"></td>
 									<td th:text="${device.ubicacionCordenada}"></td>
-									<td th:text="${device.estado}"></td>
+									<td>
+										<!-- Mostrar el estado del dispositivo -->
+										<span th:text="${device.estado} ? 'Prendido' : 'Apagado'"></span>
+									</td>
 									<td th:text="${device.umbralLuz}"></td>
 									<td th:text="${device.intensidadLuz}"></td>
 									<td>

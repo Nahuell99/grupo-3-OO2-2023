@@ -53,6 +53,7 @@ public class Event {
 				+ descripcion + ", activo=" + activo + "]";
 	}
 
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -118,3 +119,6 @@ public class Event {
 		this.activo = activo;
 	}
 }
+
+
+

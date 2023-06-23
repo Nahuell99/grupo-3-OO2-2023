@@ -19,7 +19,9 @@ import jakarta.persistence.OneToMany;
 
 
 
+
 import lombok.Data;
+
 
 @Entity
 public class User {
@@ -58,7 +60,31 @@ public class User {
 
 
 	public User() {}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 
 	public String getUsername() {
 		return username;

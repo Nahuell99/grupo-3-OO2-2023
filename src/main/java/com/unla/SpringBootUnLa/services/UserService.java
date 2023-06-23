@@ -3,6 +3,7 @@ package com.unla.SpringBootUnLa.services;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,33 @@ public class UserService implements UserDetailsService {
 		}
 		return new ArrayList<>(grantedAuthorities);
 	}
+	
+	public List<com.unla.SpringBootUnLa.entities.User> getAllUsers() {
+		return userRepository.findAll();
+	}
+	
+	public com.unla.SpringBootUnLa.entities.User getUserById(int userId) {
+		Optional<com.unla.SpringBootUnLa.entities.User> user = userRepository.findById(userId);
+		return user.orElse(null);
+	}
+	
+	public void createUser(com.unla.SpringBootUnLa.entities.User user) {
+		userRepository.save(user);
+	}
+	
+	public void updateUser(com.unla.SpringBootUnLa.entities.User user) {
+		userRepository.save(user);
+	}
+	
+	public void deleteReactiveUser(int userId, boolean status) {		
+		com.unla.SpringBootUnLa.entities.User user = this.getUserById(userId);
+		user.setId(userId);
+		user.setEnabled(status);
+    	this.updateUser(user);
+	}
+
+	public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+	
 }

@@ -8,7 +8,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,11 +73,11 @@ public class RecolectorInteligenteController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/recolectorInteligente/eliminar/{id}")
+    @GetMapping("/recolectorInteligente/eliminar/{id}")
     public ModelAndView eliminarRecolectorInteligente(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
         RecolectorInteligente recolector = recolectorService.getRecolectorById(id);
-        recolector.setActivo(false);
+        System.out.println(recolector);
         recolectorService.deleteRecolector(id);
         modelAndView.setViewName(ViewRouteHelper.MENU_OPCIONES_RECOLECTOR);
         modelAndView.addObject("recolectorInteligente", recolector);
