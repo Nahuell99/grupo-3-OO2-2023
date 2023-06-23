@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.unla.SpringBootUnLa.entities.RecolectorInteligente;
-import com.unla.SpringBootUnLa.entities.SensorAlumbradoInteligente;
 import com.unla.SpringBootUnLa.repositories.IRecolectorInteligenteRepository;
 
 @Service

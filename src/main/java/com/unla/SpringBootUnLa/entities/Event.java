@@ -1,7 +1,6 @@
 package com.unla.SpringBootUnLa.entities;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -45,6 +44,12 @@ public class Event {
 	
 	public Event() {
 		this.activo = true;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", descripcion="
+				+ descripcion + ", activo=" + activo + "]";
 	}
 
 }

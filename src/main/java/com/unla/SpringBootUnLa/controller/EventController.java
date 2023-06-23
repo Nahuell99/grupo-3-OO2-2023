@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +36,7 @@ public class EventController {
 
     
     // URL BASE
-    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasAnyRole('ROLE_AUDITOR', 'ROLE_ADMIN')")
     @GetMapping("/sensorAlumbradoInteligente/lista/eventos/{id}")
     public String listaEventos(@PathVariable int id, Model model) {
         SensorAlumbradoInteligente device = sensorService.getSensorById(id);

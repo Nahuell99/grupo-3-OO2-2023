@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Grupo-3-OO2-2023</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+	<!-- Bootstrap icons-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="/css/device.css" rel="stylesheet" />
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+
+		.content {
+			flex: 1;
+		}
+
+		.footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+        }
+
+		.navbar-btn {
+			margin-right: 18px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Responsive navbar-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-lg-5">
+			<a class="navbar-brand" th:href="@{/}">Inicio</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" th:href="@{/abmUser}">Volver a
+							opciones</a></li>
+				</ul>
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>Crear Usuario</h1>
+		<form action="#" th:action="@{newCreate}" method="POST" onsubmit="return validateForm()">
+			<div class="form-group">
+				<label for="username">Usuario</label>
+				<input type="text" class="form-control" id="username" name="username" required
+					th:field="${user.username}">
+			</div>
+			<span id="usernameError" class="error-message" th:if="${errorMessage}" th:text="${errorMessage}" style="font-weight: bold; color: red;"></span>
+			<div class="form-group">
+				<label for="password">Contraseña</label>
+				<input type="password" class="form-control" id="password" name="password" required
+					th:field="${user.password}">
+			</div>
+			<div class="form-group">
+				<label for="confirmPassword">Confirmar Contraseña</label>
+				<input type="password" class="form-control" id="confirmPassword" required>
+				<span id="confirmPasswordError" class="error-message"></span>
+			</div>
+			<div class="form-group">
+				<label for="role">Rol</label>
+				<select class="form-control" id="role" name="role" required th:field="${userRole.role}">
+					<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+					<option value="ROLE_AUDITOR">ROLE_AUDITOR</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Crear Usuario</button>
+		</form>
+	</div>
+
+	<div class="push"></div>
+	<!-- Con esto empujo el footer hacia abajo -->
+
+	<!-- Footer-->
+	<footer class="py-5 bg-dark footer">
+		<div class="container">
+			<p class="m-0 text-center">Ignacio Mansilla | Gaston Ponce |
+				Alan Gabriel</p>
+		</div>
+	</footer>
+	</div>
+
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+	<script>
+		function validateForm() {
+			var password = document.getElementById("password").value;
+			var confirmPassword = document.getElementById("confirmPassword").value;
+			var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+			if (password !== confirmPassword) {
+				confirmPasswordError.textContent = "Las contraseñas no coinciden";
+				return false;
+			} else {
+				confirmPasswordError.textContent = "";
+				return true;
+			}
+		}
+	</script>
+
+</body>
+
+</html>
